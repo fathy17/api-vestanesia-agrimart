@@ -1,0 +1,14 @@
+2021-04-01T10:49:01+00:00 CRITICAL Uncaught TypeError: method_exists(): Argument #1 ($object_or_class) must be of type object|string, array given in C:\xampp\htdocs\project1\wp-content\plugins\wp-mail-smtp\src\Providers\Gmail\Mailer.php:160
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-content\plugins\wp-mail-smtp\src\Providers\Gmail\Mailer.php(160): method_exists(Array, 'getId')
+#1 C:\xampp\htdocs\project1\wp-content\plugins\wp-mail-smtp\src\MailCatcherV6.php(130): WPMailSMTP\Providers\Gmail\Mailer->is_email_sent()
+#2 C:\xampp\htdocs\project1\wp-includes\pluggable.php(531): WPMailSMTP\MailCatcherV6->send()
+#3 C:\xampp\htdocs\project1\wp-content\plugins\wp-mail-smtp\src\Admin\Pages\TestTab.php(198): wp_mail(Array, 'WP Mail SMTP: T...', 'Congrats, test ...', Array)
+#4 C:\xampp\htdocs\project1\wp-content\plugins\wp-mail-smtp\src\Admin\Area.php(869): WPMailSMTP\Admin\Pages\TestTab->process_post(Array)
+#5 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(292): WPMailSMTP\Admin\Area->process_actions('')
+#6 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters(NULL, Array)
+#7 C:\xampp\htdocs\project1\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#8 C:\xampp\htdocs\project1\wp-admin\admin.php(175): do_action('admin_init')
+#9 {main}
+  thrown di C:\xampp\htdocs\project1\wp-content\plugins\wp-mail-smtp\src\Providers\Gmail\Mailer.php pada baris 160
+

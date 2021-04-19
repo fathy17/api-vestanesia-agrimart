@@ -1,0 +1,151 @@
+2021-04-17T22:59:22+00:00 NOTICE sync_store :: posting data :: Array
+(
+    [store_post] => Array
+        (
+            [id] => 607b67f206027
+            [is_syncing] => 
+            [platform] => woocommerce
+            [list_id] => 6fd09924b5
+            [name] => Fathy Fahrezy
+            [domain] => http://localhost/project1
+            [email_address] => fathyfahrezy17@gmail.com
+            [currency_code] => IDR
+            [money_format] => Rp
+            [primary_locale] => id_ID
+            [timezone] => +00:00
+            [phone] => 081342217536
+            [address] => Array
+                (
+                    [address1] => BTN Pao-Permai Blok D7/4
+                    [city] => Gowa
+                    [province] => Sulawesi Selatan
+                    [postal_code] => 92113
+                    [country] => ID
+                    [country_code] => ID
+                    [phone] => 081342217536
+                    [company] => Fathy Fahrezy
+                )
+
+        )
+
+)
+
+2021-04-17T22:59:25+00:00 NOTICE sync_store :: posting data :: Array
+(
+    [store_post] => Array
+        (
+            [id] => 607b67f206027
+            [is_syncing] => 
+            [platform] => woocommerce
+            [list_id] => 6fd09924b5
+            [name] => Fathy Fahrezy
+            [domain] => http://localhost/project1
+            [email_address] => fathyfahrezy17@gmail.com
+            [currency_code] => IDR
+            [money_format] => Rp
+            [primary_locale] => id_ID
+            [timezone] => +00:00
+            [phone] => 081342217536
+            [address] => Array
+                (
+                    [address1] => BTN Pao-Permai Blok D7/4
+                    [city] => Gowa
+                    [province] => Sulawesi Selatan
+                    [postal_code] => 92113
+                    [country] => ID
+                    [country_code] => ID
+                    [phone] => 081342217536
+                    [company] => Fathy Fahrezy
+                )
+
+        )
+
+)
+
+2021-04-17T22:59:27+00:00 NOTICE sync_store :: posting data :: Array
+(
+    [store_post] => Array
+        (
+            [id] => 607b67f206027
+            [is_syncing] => 
+            [platform] => woocommerce
+            [list_id] => 6fd09924b5
+            [name] => Fathy Fahrezy
+            [domain] => http://localhost/project1
+            [email_address] => fathyfahrezy17@gmail.com
+            [currency_code] => IDR
+            [money_format] => Rp
+            [primary_locale] => id_ID
+            [timezone] => +00:00
+            [phone] => 081342217536
+            [address] => Array
+                (
+                    [address1] => BTN Pao-Permai Blok D7/4
+                    [city] => Gowa
+                    [province] => Sulawesi Selatan
+                    [postal_code] => 92113
+                    [country] => ID
+                    [country_code] => ID
+                    [phone] => 081342217536
+                    [company] => Fathy Fahrezy
+                )
+
+        )
+
+)
+
+2021-04-17T22:59:30+00:00 NOTICE mailchimp-woocommerce-sync.started :: Starting Sync :: Sat, Apr 17, 2021 10:59 PM
+2021-04-17T22:59:30+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Process_Coupons queued :: page 1
+2021-04-17T23:00:04+00:00 NOTICE coupon_sync.completed :: Done with the coupon queueing.
+2021-04-17T23:00:04+00:00 NOTICE sync.full_sync_manager.queue :: Starting PRODUCTS queueing.
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Process_Products queued :: page 1
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Process_Products queued :: page 2
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 16
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 17
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 18
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 19
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 20
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 21
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 22
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 23
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 24
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 25
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 26
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 27
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 28
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 29
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 36
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 37
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 39
+2021-04-17T23:00:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product queued :: obj_id 75
+2021-04-17T23:00:06+00:00 NOTICE product_sync.completed :: Done with the product queuing
+2021-04-17T23:00:07+00:00 NOTICE product_submit.success :: addStoreProduct :: #16
+2021-04-17T23:00:08+00:00 NOTICE product_submit.success :: addStoreProduct :: #17
+2021-04-17T23:00:09+00:00 NOTICE product_submit.success :: addStoreProduct :: #18
+2021-04-17T23:00:10+00:00 NOTICE product_submit.success :: addStoreProduct :: #19
+2021-04-17T23:00:11+00:00 NOTICE product_submit.success :: addStoreProduct :: #20
+2021-04-17T23:00:12+00:00 NOTICE product_submit.success :: addStoreProduct :: #21
+2021-04-17T23:00:13+00:00 NOTICE product_submit.success :: addStoreProduct :: #22
+2021-04-17T23:00:14+00:00 NOTICE product_submit.success :: addStoreProduct :: #23
+2021-04-17T23:00:15+00:00 NOTICE product_submit.success :: addStoreProduct :: #24
+2021-04-17T23:00:16+00:00 NOTICE product_submit.success :: addStoreProduct :: #25
+2021-04-17T23:00:17+00:00 NOTICE product_submit.success :: addStoreProduct :: #26
+2021-04-17T23:00:18+00:00 NOTICE product_submit.success :: addStoreProduct :: #27
+2021-04-17T23:00:19+00:00 NOTICE product_submit.success :: addStoreProduct :: #28
+2021-04-17T23:00:19+00:00 NOTICE product_submit.success :: addStoreProduct :: #29
+2021-04-17T23:00:20+00:00 NOTICE product_submit.success :: addStoreProduct :: #36
+2021-04-17T23:00:21+00:00 NOTICE product_submit.success :: addStoreProduct :: #37
+2021-04-17T23:00:22+00:00 NOTICE product_submit.success :: addStoreProduct :: #39
+2021-04-17T23:00:23+00:00 NOTICE product_submit.success :: addStoreProduct :: #75
+2021-04-17T23:00:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Process_Orders queued :: page 1
+2021-04-17T23:00:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Process_Orders queued :: page 2
+2021-04-17T23:00:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order queued :: obj_id 80
+2021-04-17T23:00:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order queued :: obj_id 81
+2021-04-17T23:00:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order queued :: obj_id 82
+2021-04-17T23:00:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order queued :: obj_id 96
+2021-04-17T23:00:25+00:00 NOTICE order_sync.completed :: Done with the order queueing.
+2021-04-17T23:00:29+00:00 ERROR order_submit.error :: addStoreOrder :: #80 :: Error Code 400 :: <p>order_url: That is not a valid URL: http://localhost/project1/my-account/view-order/80/</p> on 1886 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-17T23:01:36+00:00 ERROR order_submit.error :: addStoreOrder :: #81 :: Error Code 400 :: <p>order_url: That is not a valid URL: http://localhost/project1/my-account/view-order/81/</p> on 1886 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-17T23:01:40+00:00 ERROR order_submit.error :: addStoreOrder :: #82 :: Error Code 400 :: <p>order_url: That is not a valid URL: http://localhost/project1/my-account/view-order/82/</p> on 1886 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-17T23:01:44+00:00 ERROR order_submit.error :: addStoreOrder :: #96 :: Error Code 400 :: <p>order_url: That is not a valid URL: http://localhost/project1/my-account/view-order/96/</p> on 1886 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-17T23:01:44+00:00 NOTICE sync.completed :: Finished Sync :: Sat, Apr 17, 2021 11:01 PM (total time: 00:02:14)

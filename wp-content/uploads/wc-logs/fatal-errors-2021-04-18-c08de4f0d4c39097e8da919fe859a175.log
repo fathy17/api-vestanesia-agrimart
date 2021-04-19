@@ -1,0 +1,8 @@
+2021-04-18T22:11:02+00:00 CRITICAL Uncaught Error: Undefined constant "www" in C:\xampp\htdocs\project1\wp-content\themes\twentynineteen\index.php:17
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\project1\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\project1\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown di C:\xampp\htdocs\project1\wp-content\themes\twentynineteen\index.php pada baris 17
+

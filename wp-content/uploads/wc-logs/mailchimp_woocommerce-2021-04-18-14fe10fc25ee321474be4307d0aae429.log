@@ -1,0 +1,24 @@
+2021-04-18T07:02:20+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 148
+2021-04-18T07:02:20+00:00 NOTICE debug :: Order ID 148 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-18T07:08:12+00:00 NOTICE order_sumbit :: #148 has a financial status of cancelled and was skipped.
+2021-04-18T10:44:20+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 16
+2021-04-18T10:45:34+00:00 NOTICE product_submit.success :: updateStoreProduct :: #16
+2021-04-18T21:42:55+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 149
+2021-04-18T21:44:32+00:00 NOTICE order_sumbit :: #149 has a financial status of pending and was skipped.
+2021-04-18T21:59:29+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 150
+2021-04-18T22:01:03+00:00 NOTICE order_sumbit :: #150 has a financial status of pending and was skipped.
+2021-04-18T22:03:06+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 151
+2021-04-18T22:03:09+00:00 NOTICE debug :: Order ID 151 was pending and is now on-hold :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-18T22:03:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-18T22:03:32+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 0 ::  on 1894 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-18T22:06:03+00:00 NOTICE system.debug :: order 151 is in on-hold status, and is being skipped for now.
