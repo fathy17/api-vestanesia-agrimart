@@ -2,12 +2,10 @@
 
 defined( 'ABSPATH' ) || exit;
 use YayMail\Page\Source\CustomPostType;
-
 $postID          = CustomPostType::postIDByTemplate( $this->template );
 $text_link_color = get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) ? get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) : '#96588a';
 $sent_to_admin   = isset( $this->sent_to_admin ) ? true : false;
-
-$titleColor = isset( $atts['titlecolor'] ) && $atts['titlecolor'] ? 'color:' . html_entity_decode( $atts['titlecolor'], ENT_QUOTES, 'UTF-8' ) : 'color:inherit';
+$titleColor      = isset( $atts['titlecolor'] ) && $atts['titlecolor'] ? 'color:' . html_entity_decode( $atts['titlecolor'], ENT_QUOTES, 'UTF-8' ) : 'color:inherit';
 ?>
 
 <?php

@@ -334,19 +334,47 @@ function twentynineteen_colors_css_wrap()
 add_action('wp_head', 'twentynineteen_colors_css_wrap');
 
 // Test
-add_action('woocommerce_checkout_order_processed', 'pending_new_order_notification', 20, 1);
-function pending_new_order_notification($order_id)
+// add_action('woocommerce_checkout_order_processed', 'pending_new_order_notification', 20, 1);
+// function pending_new_order_notification($order_id)
+// {
+
+// 	// Get an instance of the WC_Order object
+// 	$order = wc_get_order($order_id);
+
+// 	// Only for "pending" order status
+// 	if (!$order->has_status('pending')) return;
+
+// 	// Send "New Email" notification (to admin)
+// 	WC()->mailer()->get_emails()['WC_Email_New_Order']->trigger($order_id);
+// }
+
+// ************* Remove default Posts type since no blog *************
+
+// Remove side menu
+add_action('admin_menu', 'remove_default_post_type');
+
+function remove_default_post_type()
 {
-
-	// Get an instance of the WC_Order object
-	$order = wc_get_order($order_id);
-
-	// Only for "pending" order status
-	if (!$order->has_status('pending')) return;
-
-	// Send "New Email" notification (to admin)
-	WC()->mailer()->get_emails()['WC_Email_New_Order']->trigger($order_id);
+	remove_menu_page('edit.php');
 }
+
+// Remove +New post in top Admin Menu Bar
+add_action('admin_bar_menu', 'remove_default_post_type_menu_bar', 999);
+
+function remove_default_post_type_menu_bar($wp_admin_bar)
+{
+	$wp_admin_bar->remove_node('new-post');
+}
+
+// Remove Quick Draft Dashboard Widget
+add_action('wp_dashboard_setup', 'remove_draft_widget', 999);
+
+function remove_draft_widget()
+{
+	remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
+}
+
+// End remove post type
 
 /**
  * SVG Icons class.

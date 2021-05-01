@@ -53,25 +53,13 @@ class Settings {
 		// Add Woocommerce email setting columns
 		add_filter( 'woocommerce_email_setting_columns', array( $this, 'yaymail_email_setting_columns' ) );
 		add_action( 'woocommerce_email_setting_column_template', array( $this, 'column_template' ) );
-		//add_shortcode( 'yaymail_billing_shipping_address_content', array( $this, 'shortcodeCallBack' ) );
+
 		// Excute Ajax
 		Ajax::getInstance();
 	}
 	public function __construct() {}
-	public function shortcodeCallBack( $atts ) {
-		$billing_address  = $atts['billing_address'];
-		$shipping_address = $atts['shipping_address'];
-		ob_start();
-		$path  = YAYMAIL_PLUGIN_PATH . 'views/templates/emails/email-billing-shipping-address-content.php';
-		$order = $this->order;
-		include $path;
-		$html = ob_get_contents();
-		ob_end_clean();
-		return $html;
-	}
 
 	public function yaymail_email_setting_columns( $array ) {
-		// filter...
 		if ( isset( $array['actions'] ) ) {
 			unset( $array['actions'] );
 			return array_merge(
@@ -82,33 +70,11 @@ class Settings {
 				)
 			);
 		}
-
 		return $array;
 	}
-
 	public function column_template( $email ) {
-		$arrEmailDefault = array(
-			'new_order',
-			'cancelled_order',
-			'failed_order',
-			'customer_on_hold_order',
-			'customer_processing_order',
-			'customer_completed_order',
-			'customer_refunded_order',
-			'customer_invoice',
-			'customer_note',
-			'customer_reset_password',
-			'customer_new_account',
-		);
-
-		if ( in_array( $email->id, $arrEmailDefault ) ) {
-			echo '<td class="wc-email-settings-table-template">
-			<a class="button alignright" target="_blank" href="' . esc_attr( admin_url( 'admin.php?page=yaymail-settings' ) ) . '&template=' . esc_attr( $email->id ) . '">' . esc_html( __( 'Customize with YayMail', 'yaymail' ) ) . '</a></td>';
-		} else {
-			echo '<td class="wc-email-settings-table-template">
-			<a class="button alignright" target="_blank" href="https://yaycommerce.com/yaymail-woocommerce-email-customizer/">' . esc_html( __( 'Customize with YayMail (PRO)', 'yaymail' ) ) . '</a></td>';
-		}
-
+		echo '<td class="wc-email-settings-table-template">
+				<a class="button alignright" target="_blank" href="' . esc_attr( admin_url( 'admin.php?page=yaymail-settings' ) ) . '&template=' . esc_attr( $email->id ) . '">' . esc_html( __( 'Customize with YayMail', 'yaymail' ) ) . '</a></td>';
 	}
 
 	public function renderNotice() {
@@ -261,7 +227,6 @@ class Settings {
 						'post_type'                       => 'yaymail_template',
 						'post_status'                     => 'publish',
 						'_yaymail_template'               => $key,
-						'_yaymail_html'                   => $template['html'],
 						'_email_backgroundColor_settings' => 'rgb(236, 236, 236)',
 						'_yaymail_elements'               => json_decode( $template['elements'], true ),
 
@@ -319,8 +284,7 @@ class Settings {
 					$settingEnableDisables[ $keyDefaultEnableDisable ] = $settingDefaultEnableDisable;
 				};
 			}
-			$settingEnableDisables['yaymail_direction'] = get_option( 'yaymail_direction' ) ? get_option( 'yaymail_direction' ) : 'ltr';
-			$settings['enableDisable']                  = $settingEnableDisables;
+			$settings['enableDisable'] = $settingEnableDisables;
 
 			/*
 			@@@@ General
@@ -333,17 +297,25 @@ class Settings {
 					$settingGenerals[ $keyDefaultGeneral ] = $settingDefaultGenerals[ $keyDefaultGeneral ];
 				};
 			}
-			$settings['general'] = $settingGenerals;
+
+			$settingGenerals['direction_rtl'] = get_option( 'yaymail_direction' ) ? get_option( 'yaymail_direction' ) : 'ltr';
+			$settings['general']              = $settingGenerals;
 
 			$scriptId = $this->getPageId();
 			$order    = CustomPostType::getListOrders();
-						wp_enqueue_script( $scriptId, YAYMAIL_PLUGIN_URL . 'assets/dist/js/main.js', array( 'jquery' ), YAYMAIL_VERSION, true );
-						wp_enqueue_style( $scriptId, YAYMAIL_PLUGIN_URL . 'assets/dist/css/main.css', array(), YAYMAIL_VERSION );
+			wp_enqueue_script( 'vue', YAYMAIL_PLUGIN_URL . ( YAYMAIL_DEBUG ? 'assets/libs/vue.js' : 'assets/libs/vue.min.js' ), '', YAYMAIL_VERSION, true );
+			wp_enqueue_script( 'vuex', YAYMAIL_PLUGIN_URL . 'assets/libs/vuex.js', '', YAYMAIL_VERSION, true );
+
+			do_action( 'yaymail_before_enqueue_dependence' );
+
+			wp_enqueue_script( $scriptId, YAYMAIL_PLUGIN_URL . 'assets/dist/js/main.js', array( 'jquery' ), YAYMAIL_VERSION, true );
+			wp_enqueue_style( $scriptId, YAYMAIL_PLUGIN_URL . 'assets/dist/css/main.css', array(), YAYMAIL_VERSION );
 
 			// Css of ant
 			// wp_enqueue_style($scriptId . 'antd-css', YAYMAIL_PLUGIN_URL . 'assets/admin/css/antd.min.css');
 			// Css file app
 			// wp_enqueue_style($scriptId, YAYMAIL_PLUGIN_URL . 'assets/dist/css/main.css');
+
 			wp_enqueue_script( $scriptId . '-script', YAYMAIL_PLUGIN_URL . 'assets/admin/js/script.js', '', YAYMAIL_VERSION, true );
 			$yaymailSettings = get_option( 'yaymail_settings' );
 
@@ -366,9 +338,13 @@ class Settings {
 			// Load ACE Editor -End
 			// Css for page admin of WordPress.
 			wp_enqueue_style( $scriptId . '-css', YAYMAIL_PLUGIN_URL . 'assets/admin/css/css.css', array(), YAYMAIL_VERSION );
-			$current_user       = wp_get_current_user();
-			$default_email_test = false != get_user_meta( get_current_user_id(), 'yaymail_default_email_test', true ) ? get_user_meta( get_current_user_id(), 'yaymail_default_email_test', true ) : $current_user->user_email;
-			$element            = new DefaultElement();
+			$current_user                 = wp_get_current_user();
+			$default_email_test           = false != get_user_meta( get_current_user_id(), 'yaymail_default_email_test', true ) ? get_user_meta( get_current_user_id(), 'yaymail_default_email_test', true ) : $current_user->user_email;
+			$element                      = new DefaultElement();
+			$yaymailSettingsDefaultLogo   = get_option( 'yaymail_settings_default_logo' );
+			$setDefaultLogo               = false != $yaymailSettingsDefaultLogo ? $yaymailSettingsDefaultLogo['set_default'] : '0';
+			$yaymailSettingsDefaultFooter = get_option( 'yaymail_settings_default_footer' );
+			$setDefaultFooter             = false != $yaymailSettingsDefaultFooter ? $yaymailSettingsDefaultFooter['set_default'] : '0';
 			if ( isset( $_GET['template'] ) || ! empty( $_GET['template'] ) ) {
 				$req_template['id'] = sanitize_text_field( $_GET['template'] );
 			} else {
@@ -379,21 +355,213 @@ class Settings {
 					$req_template['title'] = $value->title;
 				}
 			}
+
+			// List email supported
+
+			$list_email_supported = array(
+				'WC_Subscription'           => array(
+					'plugin_name'   => 'WooCommerce Subscriptions',
+					'template_name' => array(
+						'cancelled_subscription',
+						'expired_subscription',
+						'suspended_subscription',
+						'customer_completed_renewal_order',
+						'customer_completed_switch_order',
+						'customer_on_hold_renewal_order',
+						'customer_renewal_invoice',
+						'new_renewal_order',
+						'new_switch_order',
+						'customer_processing_renewal_order',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/woo-subscription',
+				),
+				'yith_wishlist_constructor' => array(
+					'plugin_name'   => 'YITH WooCommerce Wishlist Premium',
+					'template_name' => array(
+						'estimate_mail',
+						'yith_wcwl_back_in_stock',
+						'yith_wcwl_on_sale_item',
+						'yith_wcwl_promotion_mail',
+					),
+					'link_upgrade'  => '#456',
+				),
+				'SUMO_Subscription'         => array(
+					'plugin_name'   => 'SUMO Subscription',
+					'template_name' => array(
+						'subscription_new_order',
+						'subscription_new_order_old_subscribers',
+						'subscription_processing_order',
+						'subscription_completed_order',
+						'subscription_pause_order',
+						'subscription_invoice_order_manual',
+						'subscription_expiry_reminder',
+						'subscription_automatic_charging_reminder',
+						'subscription_renewed_order_automatic',
+						'auto_to_manual_subscription_renewal',
+						'subscription_overdue_order_automatic',
+						'subscription_overdue_order_manual',
+						'subscription_suspended_order_automatic',
+						'subscription_suspended_order_manual',
+						'subscription_preapproval_access_revoked',
+						'subscription_turnoff_automatic_payments_success',
+						'subscription_pending_authorization',
+						'subscription_cancel_order',
+						'subscription_cancel_request_submitted',
+						'subscription_cancel_request_revoked',
+						'subscription_expired_order',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/sumo-subscription',
+				),
+
+				'YITH_Subscription'         => array(
+					'plugin_name'   => 'YITH WooCommerce Subscription Premium',
+					'template_name' => array(
+						'ywsbs_subscription_admin_mail',
+						'ywsbs_customer_subscription_cancelled',
+						'ywsbs_customer_subscription_suspended',
+						'ywsbs_customer_subscription_expired',
+						'ywsbs_customer_subscription_before_expired',
+						'ywsbs_customer_subscription_paused',
+						'ywsbs_customer_subscription_resumed',
+						'ywsbs_customer_subscription_request_payment',
+						'ywsbs_customer_subscription_renew_reminder',
+						'ywsbs_customer_subscription_payment_done',
+						'ywsbs_customer_subscription_payment_failed',
+						'ywsbs_customer_subscription_delivery_schedules',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/yith-subscription',
+				),
+				'woo-b2b'                   => array(
+					'plugin_name'   => 'WooCommerce B2B',
+					'template_name' => array(
+						'wcb2b_customer_onquote_order',
+						'wcb2b_customer_quoted_order',
+						'wcb2b_customer_status_notification',
+						'wcb2b_new_quote',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/woo-b2b',
+				),
+				'YITH_Vendors'              => array(
+					'plugin_name'   => 'YITH WooCommerce Multi Vendor Premium',
+					'template_name' => array(
+						'cancelled_order_to_vendor',
+						'commissions_paid',
+						'commissions_unpaid',
+						'new_order_to_vendor',
+						'new_vendor_registration',
+						'product_set_in_pending_review',
+						'vendor_commissions_bulk_action',
+						'vendor_commissions_paid',
+						'vendor_new_account',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/yith-vendor',
+				),
+				'Germanized_Pro'            => array(
+					'plugin_name'   => 'Germanized for WooCommerce Pro',
+					'template_name' => array(
+						'sab_cancellation_invoice',
+						'sab_document',
+						'sab_document_admin',
+						'sab_simple_invoice',
+						'sab_packing_slip',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/woo-germanized-pro',
+				),
+				'WC_Bookings'               => array(
+					'plugin_name'   => 'WooCommerce Bookings',
+					'template_name' => array(
+						'admin_booking_cancelled',
+						'booking_cancelled',
+						'booking_confirmed',
+						'booking_notification',
+						'booking_pending_confirmation',
+						'booking_reminder',
+						'new_booking',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/woo-bookings',
+				),
+				'WooCommerce_Waitlist'      => array(
+					'plugin_name'   => 'WooCommerce Waitlist',
+					'template_name' => array(
+						'woocommerce_waitlist_joined_email',
+						'woocommerce_waitlist_left_email',
+						'woocommerce_waitlist_mailout',
+						'woocommerce_waitlist_signup_email',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/woo-waitlist',
+				),
+				'WooCommerce_Quotes'        => array(
+					'plugin_name'   => 'Quotes for WooCommerce',
+					'template_name' => array(
+						'qwc_req_new_quote',
+						'qwc_request_sent',
+						'qwc_send_quote',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/woo-quotes',
+				),
+				'YITH_Pre_Order'            => array(
+					'plugin_name'   => 'YITH Pre-Order for WooCommerce Premium ',
+					'template_name' => array(
+						'yith_ywpo_date_end',
+						'yith_ywpo_sale_date_changed',
+						'yith_ywpo_is_for_sale',
+						'yith_ywpo_out_of_stock',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/yith_pre_order',
+				),
+				'WooCommerce_Appointments'  => array(
+					'plugin_name'   => 'WooCommerce Appointments',
+					'template_name' => array(
+						'admin_appointment_cancelled',
+						'admin_new_appointment',
+						'appointment_cancelled',
+						'appointment_confirmed',
+						'appointment_follow_up',
+						'appointment_reminder',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/woo_appointments',
+				),
+				'SG_Order_Approval'         => array(
+					'plugin_name'   => 'Sg Order Approval for Woocommerce',
+					'template_name' => array(
+						'wc_admin_order_new',
+						'wc_customer_order_new',
+						'wc_customer_order_approved',
+						'wc_customer_order_rejected',
+					),
+					'link_upgrade'  => 'https://yaycommerce.com/yaymail-addon/sg_order_approval',
+				),
+			);
+
+			$list_plugin_for_pro = array();
+
+			if ( class_exists( 'WC_Shipment_Tracking_Actions' ) || class_exists( 'WC_Advanced_Shipment_Tracking_Actions' ) ) {
+				$list_plugin_for_pro[] = 'WC_Shipment_Tracking';
+			}
+			if ( class_exists( 'WC_Admin_Custom_Order_Fields' ) ) {
+				$list_plugin_for_pro[] = 'WC_Admin_Custom_Order_Fields';
+			}
+
 			wp_localize_script(
 				$scriptId,
 				'yaymail_data',
 				array(
-					'orders'             => $order,
-					'imgUrl'             => YAYMAIL_PLUGIN_URL . 'assets/dist/images',
-					'nonce'              => wp_create_nonce( 'email-nonce' ),
-					'defaultDataElement' => $element->defaultDataElement,
-					'home_url'           => home_url(),
-					'settings'           => $settings,
-					'admin_url'          => get_admin_url(),
-					'yaymail_plugin_url' => YAYMAIL_PLUGIN_URL,
-					'wc_emails'          => $this->emails,
-					'default_email_test' => $default_email_test,
-					'template'           => $req_template,
+					'orders'               => $order,
+					'imgUrl'               => YAYMAIL_PLUGIN_URL . 'assets/dist/images',
+					'nonce'                => wp_create_nonce( 'email-nonce' ),
+					'defaultDataElement'   => $element->defaultDataElement,
+					'home_url'             => home_url(),
+					'settings'             => $settings,
+					'admin_url'            => get_admin_url(),
+					'yaymail_plugin_url'   => YAYMAIL_PLUGIN_URL,
+					'wc_emails'            => $this->emails,
+					'default_email_test'   => $default_email_test,
+					'template'             => $req_template,
+					'set_default_logo'     => $setDefaultLogo,
+					'set_default_footer'   => $setDefaultFooter,
+					'list_plugin_for_pro'  => $list_plugin_for_pro,
+					'plugins'              => apply_filters( 'yaymail_plugins', array() ),
+					'list_email_supported' => $list_email_supported,
 				)
 			);
 		}

@@ -7,7 +7,9 @@ $sent_to_admin   = ( isset( $sent_to_admin ) ? true : false );
 $plain_text      = ( isset( $plain_text ) ? $plain_text : '' );
 $email           = ( isset( $email ) ? $email : '' );
 $postID          = CustomPostType::postIDByTemplate( $this->template );
-$text_link_color = get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) ? get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) : '#96588a';
+$text_link_color = get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) ? get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) : '#96588A';
+$borderColor     = isset( $atts['bordercolor'] ) && $atts['bordercolor'] ? 'border-color:' . html_entity_decode( $atts['bordercolor'], ENT_QUOTES, 'UTF-8' ) : 'border-color:inherit';
+$textColor       = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . html_entity_decode( $atts['textcolor'], ENT_QUOTES, 'UTF-8' ) : 'color:inherit';
 $columns         = apply_filters(
 	'woocommerce_email_downloads_columns',
 	array(
@@ -20,27 +22,27 @@ $columns         = apply_filters(
 
 <!-- Table Items has Border -->
 <?php
-if ( $downloads ) {
+if ( isset( $downloads ) && ! empty( $downloads ) ) {
 	?>
-<table class="yaymail_builder_table_items_border yaymail_builder_table_item_download" cellspacing="0" cellpadding="6" border="1" style="width: 100% !important;border-color: inherit;color: inherit;flex-direction:inherit;" width="100%">
+<table class="yaymail_builder_table_items_border yaymail_builder_table_item_download" cellspacing="0" cellpadding="6" border="1" style="width: 100% !important;<?php echo esc_attr( $borderColor ); ?>;color: inherit;flex-direction:inherit;" width="100%">
 	<thead>
-		<tr style="word-break: normal">
-			<th class="td" scope="col" style="text-align:left;">
+		<tr style="word-break: normal;<?php echo esc_attr( $textColor ); ?>">
+			<th class="td" scope="col" style="text-align:left;<?php echo esc_attr( $borderColor ); ?>;">
 				<?php esc_html_e( 'Product', 'woocommerce' ); ?>
 			</th>
-			<th class="td" scope="col" style="text-align:left;">
+			<th class="td" scope="col" style="text-align:left;<?php echo esc_attr( $borderColor ); ?>;">
 				<?php esc_html_e( 'Expires', 'woocommerce' ); ?>
 			</th>
-			<th class="td" scope="col" style="text-align:left;">
+			<th class="td" scope="col" style="text-align:left;<?php echo esc_attr( $borderColor ); ?>;">
 				<?php esc_html_e( 'Download', 'woocommerce' ); ?>
 			</th>
 		</tr>
 	</thead>
 	<?php foreach ( $downloads as $download ) : ?>
 		<tfoot>
-			<tr>
+			<tr style="<?php echo esc_attr( $textColor ); ?>">
 				<?php foreach ( $columns as $column_id => $column_name ) : ?>
-					<td class="td">
+					<td class="td" style="<?php echo esc_attr( $borderColor ); ?>;">
 						<?php
 						if ( has_action( 'woocommerce_email_downloads_column_' . $column_id ) ) {
 							do_action( 'woocommerce_email_downloads_column_' . $column_id, $download, $plain_text );

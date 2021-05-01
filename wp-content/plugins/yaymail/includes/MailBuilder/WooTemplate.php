@@ -24,15 +24,12 @@ class WooTemplate {
 	}
 
 	private function doHooks() {
-		$this->templateAccount          = array( 'customer_new_account', 'customer_new_account_activation', 'customer_reset_password' );
-		$this->templateSubscription     = array( 'cancelled_subscription', 'expired_subscription', 'suspended_subscription' );
-		$this->templateYITHSubscription = array( 'ywsbs_subscription_admin_mail', 'ywsbs_customer_subscription_cancelled', 'ywsbs_customer_subscription_suspended', 'ywsbs_customer_subscription_expired', 'ywsbs_customer_subscription_before_expired', 'ywsbs_customer_subscription_paused', 'ywsbs_customer_subscription_resumed', 'ywsbs_customer_subscription_request_payment', 'ywsbs_customer_subscription_renew_reminder', 'ywsbs_customer_subscription_payment_done', 'ywsbs_customer_subscription_payment_failed' );
-		add_filter( 'wc_get_template', array( $this, 'getTemplateMail' ), 10, 5 );
+		$this->templateGermanizedForWC = array( 'sab_simple_invoice', 'sab_cancellation_invoice' );
+		add_filter( 'storeabill_get_template', array( $this, 'storeabill_get_template' ), 100, 5 );
+		add_filter( 'wc_get_template', array( $this, 'getTemplateMail' ), 100, 5 );
 	}
 
-	private function __construct() {}
-	// define the woocommerce_new_order callback
-	public function getTemplateMail( $located, $template_name, $args, $template_path, $default_path ) {
+	public function storeabill_get_template( $located, $template_name, $args, $template_path, $default_path ) {
 		$this_template  = false;
 		$templateActive = file_exists( YAYMAIL_PLUGIN_PATH . 'views/templates/single-mail-template.php' ) ? YAYMAIL_PLUGIN_PATH . 'views/templates/single-mail-template.php' : false;
 		$template       = isset( $args['email'] ) && isset( $args['email']->id ) && ! empty( $args['email']->id ) ? $args['email']->id : false;
@@ -40,12 +37,51 @@ class WooTemplate {
 		if ( $template ) {
 			if ( CustomPostType::postIDByTemplate( $template ) ) {
 				$postID = CustomPostType::postIDByTemplate( $template );
-				if ( get_post_meta( $postID, '_yaymail_status', true ) && ! empty( get_post_meta( $postID, '_yaymail_html', true ) ) ) {
+				if ( get_post_meta( $postID, '_yaymail_status', true ) && ! empty( get_post_meta( $postID, '_yaymail_elements', true ) ) ) {
+					if ( in_array( $template, $this->templateGermanizedForWC ) ) { // template mail with account
+						$this_template = $templateActive;
+					}
+				}
+			}
+		}
+		$this_template = $this_template ? $this_template : $located;
+		return $this_template;
+	}
+
+	private function __construct() {}
+	// define the woocommerce_new_order callback
+	public function getTemplateMail( $located, $template_name, $args, $template_path, $default_path ) {
+		$this_template  = false;
+		$templateActive = file_exists( YAYMAIL_PLUGIN_PATH . 'views/templates/single-mail-template.php' ) ? YAYMAIL_PLUGIN_PATH . 'views/templates/single-mail-template.php' : false;
+		if ( isset( $args['yith_wc_email'] ) && isset( $args['yith_wc_email']->id ) && ! empty( $args['yith_wc_email']->id ) ) {
+			// Get Email ID in yith-woocommerce-multi-vendor-premium
+			$template = $args['yith_wc_email']->id;
+		} else {
+			$template = isset( $args['email'] ) && isset( $args['email']->id ) && ! empty( $args['email']->id ) ? $args['email']->id : false;
+			if ( 'emails/waitlist-mailout.php' == $template_name ) {
+				$template = 'woocommerce_waitlist_mailout';
+			}
+			if ( 'emails/waitlist-left.php' == $template_name ) {
+				$template = 'woocommerce_waitlist_left_email';
+			}
+			if ( 'emails/waitlist-joined.php' == $template_name ) {
+				$template = 'woocommerce_waitlist_joined_email';
+			}
+			if ( 'emails/waitlist-new-signup.php' == $template_name ) {
+				$template = 'woocommerce_waitlist_signup_email';
+			}
+		}
+
+		if ( $template ) {
+			if ( CustomPostType::postIDByTemplate( $template ) ) {
+				$postID = CustomPostType::postIDByTemplate( $template );
+				if ( get_post_meta( $postID, '_yaymail_status', true ) && ! empty( get_post_meta( $postID, '_yaymail_elements', true ) ) ) {
 					if ( isset( $args['order'] ) ) { // template mail with order
 						$this_template = $templateActive;
 					} else {
-						if ( in_array( $template, $this->templateAccount ) || in_array( $template, $this->templateSubscription ) || in_array( $template, $this->templateYITHSubscription ) ) { // template mail with account
-							   $this_template = $templateActive;
+						$checkHasTempalte = apply_filters( 'yaymail_addon_defined_template', $template );
+						if ( $checkHasTempalte ) { // template mail with account
+							$this_template = $templateActive;
 						}
 					}
 				}

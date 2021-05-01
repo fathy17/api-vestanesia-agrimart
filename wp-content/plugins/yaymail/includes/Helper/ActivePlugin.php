@@ -25,6 +25,7 @@ class ActivePlugin {
 		if ( function_exists( 'WC' ) ) {
 			$this->activePlugin();
 		}
+		$this->addDefaultSetting();
 	}
 
 	public function activePlugin() {
@@ -44,13 +45,22 @@ class ActivePlugin {
 					'_yaymail_elements'               => json_decode( $template['elements'], true ),
 					'_yaymail_email_textLinkColor_settings' => '#96588A',
 					'_yaymail_email_order_item_title' => array(
-						'order_title'          => '',
-						'product_title'        => 'Product',
-						'quantity_title'       => 'Quantity',
-						'price_title'          => 'Price',
-						'subtoltal_title'      => 'Subtotal:',
-						'payment_method_title' => 'Payment method:',
-						'total_title'          => 'Total:',
+						'order_title'                   => '',
+						'product_title'                 => 'Product',
+						'quantity_title'                => 'Quantity',
+						'price_title'                   => 'Price',
+						'subtoltal_title'               => 'Subtotal:',
+						'payment_method_title'          => 'Payment method:',
+						'total_title'                   => 'Total:',
+						'subscript_id'                  => 'ID',
+						'subscript_start_date'          => 'Start date',
+						'subscript_end_date'            => 'End date',
+						'subscript_recurring_total'     => 'Recurring total',
+						'subscript_subscription'        => 'Subscription',
+						'subscript_price'               => 'Price',
+						'subscript_last_order_date'     => 'Last Order Date',
+						'subscript_end_of_prepaid_term' => 'End of Prepaid Term',
+						'subscript_date_suspended'      => 'Date Suspended',
 					),
 				);
 				$insert = CustomPostType::insert( $arr );
@@ -61,13 +71,22 @@ class ActivePlugin {
 
 				if ( ! metadata_exists( 'post', CustomPostType::postIDByTemplate( $key ), '_yaymail_email_order_item_title' ) ) {
 					$orderTitle = array(
-						'order_title'          => '',
-						'product_title'        => 'Product',
-						'quantity_title'       => 'Quantity',
-						'price_title'          => 'Price',
-						'subtoltal_title'      => 'Subtotal:',
-						'payment_method_title' => 'Payment method:',
-						'total_title'          => 'Total:',
+						'order_title'                   => '',
+						'product_title'                 => 'Product',
+						'quantity_title'                => 'Quantity',
+						'price_title'                   => 'Price',
+						'subtoltal_title'               => 'Subtotal:',
+						'payment_method_title'          => 'Payment method:',
+						'total_title'                   => 'Total:',
+						'subscript_id'                  => 'ID',
+						'subscript_start_date'          => 'Start date',
+						'subscript_end_date'            => 'End date',
+						'subscript_recurring_total'     => 'Recurring total',
+						'subscript_subscription'        => 'Subscription',
+						'subscript_price'               => 'Price',
+						'subscript_last_order_date'     => 'Last Order Date',
+						'subscript_end_of_prepaid_term' => 'End of Prepaid Term',
+						'subscript_date_suspended'      => 'Date Suspended',
 					);
 
 					update_post_meta( CustomPostType::postIDByTemplate( $key ), '_yaymail_email_order_item_title', $orderTitle );
@@ -170,7 +189,8 @@ class ActivePlugin {
 				}
 			}
 		}
-
+	}
+	public function addDefaultSetting() {
 		if ( ! get_option( 'yaymail_settings' ) ) {
 			$settings = array(
 				'payment'                      => 2,
@@ -186,6 +206,7 @@ class ActivePlugin {
 				'order_url'                    => '',
 				'custom_css'                   => '',
 				'enable_css_custom'            => 'no',
+				'direction_rtl'                => 'ltr'
 			);
 			update_option( 'yaymail_settings', $settings );
 		}

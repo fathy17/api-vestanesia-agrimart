@@ -1,0 +1,1 @@
+2021-04-21T09:39:22+00:00 INFO {"service":"Q9 Barang","description":"Q9 Barang","cost":[{"value":12000,"etd":"9 JAM","note":""}],"courier":"pos","query":{"origin":"132","originType":"city","destination":"132","destinationType":"city","width":"0","length":"0","height":"0","weight":1000,"courier":"pos"}}

@@ -9,9 +9,8 @@ $price_title          = false != $order_item_title ? $order_item_title['price_ti
 $subtoltal_title      = false != $order_item_title ? $order_item_title['subtoltal_title'] : 'Subtotal:';
 $payment_method_title = false != $order_item_title ? $order_item_title['payment_method_title'] : 'Payment method:';
 $total_title          = false != $order_item_title ? $order_item_title['total_title'] : 'Total:';
-
-$borderColor = isset( $atts['bordercolor'] ) && $atts['bordercolor'] ? 'border-color:' . html_entity_decode( $atts['bordercolor'], ENT_QUOTES, 'UTF-8' ) : 'border-color:inherit';
-$textColor   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . html_entity_decode( $atts['textcolor'], ENT_QUOTES, 'UTF-8' ) : 'color:inherit';
+$borderColor          = isset( $atts['bordercolor'] ) && $atts['bordercolor'] ? 'border-color:' . html_entity_decode( $atts['bordercolor'], ENT_QUOTES, 'UTF-8' ) : 'border-color:inherit';
+$textColor            = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . html_entity_decode( $atts['textcolor'], ENT_QUOTES, 'UTF-8' ) : 'color:inherit';
 ?>
 <!-- <table class="yaymail_builder_table_items_border" cellspacing="0" cellpadding="6" border="1" style="width: 100% !important; border-color: inherit;color: inherit" width="100%"> -->
 	<!-- <thead> -->
@@ -29,40 +28,40 @@ $textColor   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . ht
 	<!-- </thead>
 	<tbody> -->
 		<tr>
-			<td class="td" scope="row" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
+			<th class="td" scope="row" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
 				<?php esc_html_e( 'Happy YayCommerce1', 'yaymail' ); ?>
-			</td>
-			<td class="td" scope="row" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
+			</th>
+			<th class="td" scope="row" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
 				<?php esc_html_e( 1, 'yaymail' ); ?>
-			<td class="td" scope="row" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
+			<th class="td" scope="row" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
 				<?php esc_html_e( '£18.00', 'yaymail' ); ?>
-			</td>
+			</th>
 		</tr>
 	<!-- </tbody>
 	<tfoot> -->
 		<tr>
-			<td class="td yaymail_item_subtoltal_title" scope="row" colspan="2" style="text-align:left;font-weight: bold;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?> ;border-top-width: 4px;">
+			<th class="td yaymail_item_subtoltal_title" scope="row" colspan="2" style="text-align:left;font-weight: bold;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?> ;border-top-width: 4px;">
 				<?php esc_html_e( $subtoltal_title, 'woocommerce' ); ?>
-			</td>
-			<td class="td" scope="row" colspan="1" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?> ;border-top-width: 4px;">
+			</th>
+			<th class="td" scope="row" colspan="1" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>; border-top-width: 4px;">
 				<?php esc_html_e( '£18.00', 'yaymail' ); ?>
-			</td>
+			</th>
 		</tr>
 		<tr>
-			<td class="td yaymail_item_payment_method_title" scope="row" colspan="2" style="text-align:left; font-weight: bold;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
+			<th class="td yaymail_item_payment_method_title" scope="row" colspan="2" style="text-align:left; font-weight: bold;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
 				<?php esc_html_e( $payment_method_title, 'woocommerce' ); ?>
-			</td>
-			<td class="td" scope="row" colspan="1" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
+			</th>
+			<th class="td" scope="row" colspan="1" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
 				<?php esc_html_e( 'Direct bank transfer', 'woocommerce' ); ?>
-			</td>
+			</th>
 		</tr>
 		<tr>
-			<td class="td yaymail_item_total_title" scope="row" colspan="2" style="text-align:left; font-weight: bold;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
+			<th class="td yaymail_item_total_title" scope="row" colspan="2" style="text-align:left; font-weight: bold;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
 				<?php esc_html_e( $total_title, 'woocommerce' ); ?>
-			</td>
-			<td class="td" scope="row" colspan="1" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
+			</th>
+			<th class="td" scope="row" colspan="1" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;<?php echo esc_attr( $textColor ); ?>">
 				<?php esc_html_e( '£18.00', 'yaymail' ); ?>
-			</td>
+			</th>
 		</tr>
 	<!-- </tfoot>
 </table> -->

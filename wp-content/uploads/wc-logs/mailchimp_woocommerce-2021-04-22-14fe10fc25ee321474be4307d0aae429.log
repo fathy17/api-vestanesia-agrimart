@@ -1,0 +1,27 @@
+2021-04-22T18:03:20+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 167
+2021-04-22T18:03:23+00:00 NOTICE debug :: Order ID 167 was pending and is now on-hold :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-22T18:08:24+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-22T18:08:24+00:00 NOTICE system.debug :: order 167 is in on-hold status, and is being skipped for now.
+2021-04-22T19:09:33+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 168
+2021-04-22T19:09:37+00:00 NOTICE debug :: Order ID 168 was pending and is now on-hold :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-22T19:12:11+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-22T19:12:12+00:00 NOTICE system.debug :: order 168 is in on-hold status, and is being skipped for now.
+2021-04-22T19:13:40+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 169
+2021-04-22T19:13:44+00:00 NOTICE debug :: Order ID 169 was pending and is now on-hold :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-22T19:24:55+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-22T19:24:55+00:00 NOTICE system.debug :: order 169 is in on-hold status, and is being skipped for now.

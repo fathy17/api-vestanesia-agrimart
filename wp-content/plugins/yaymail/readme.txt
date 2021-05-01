@@ -2,8 +2,8 @@
 Contributors: YayCommerce
 Tags: woocommerce email, email template, email customizer, woocommerce email customizer, woocommerce email templates, woo mail
 Requires at least: 3.0
-Tested up to: 5.7
-Stable tag: trunk
+Tested up to: 5.7.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,6 +109,17 @@ You can pay once to get 1 year of support and updates. When it expires, your cus
 3. A WC email template designed with YayMail
 
 == Changelog ==
+
+= Apr 22, 2021 - Version 2.0.1 =
+- Fixed: Email templates display on mobile
+
+= Apr 20, 2021 - Version 2.0 =
+- Added: Work with YayMail Premium Addons
+- Improved: Refactor plugin
+- Improved: UI
+- Improved: Text
+- Improved: Tooltip
+- Fixed: Bugs
 
 = Mar 25, 2021 - Version 1.9.6 =
 - Added: Support Woocommerce Bookings (PRO)

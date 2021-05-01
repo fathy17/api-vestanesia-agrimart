@@ -3,12 +3,12 @@
  * Plugin Name: YayMail - WooCommerce Email Customizer
  * Plugin URI: https://yaycommerce.com/yaymail-woocommerce-email-customizer/
  * Description: Create awesome transactional emails with a drag and drop email builder
- * Version: 1.9.6
+ * Version: 2.0.1
  * Author: YayCommerce
  * Author URI: https://yaycommerce.com
  * Text Domain: yaymail
  * WC requires at least: 3.0.0
- * WC tested up to: 5.1.0
+ * WC tested up to: 5.2.2
  * Domain Path: /i18n/languages/
  */
 
@@ -16,7 +16,8 @@ namespace YayMail;
 
 defined( 'ABSPATH' ) || exit;
 define( 'YAYMAIL_PREFIX', 'yaymail' );
-define( 'YAYMAIL_VERSION', '1.9.6' );
+define( 'YAYMAIL_DEBUG', true );
+define( 'YAYMAIL_VERSION', '2.0.1' );
 define( 'YAYMAIL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'YAYMAIL_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'YAYMAIL_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -40,6 +41,7 @@ spl_autoload_register(
 		}
 	}
 );
+
 if ( ! function_exists( 'install_yaymail_admin_notice' ) ) {
 	function install_yaymail_admin_notice() {
 		?>
@@ -49,6 +51,7 @@ if ( ! function_exists( 'install_yaymail_admin_notice' ) ) {
 		<?php
 	}
 }
+
 function init() {
 	if ( ! function_exists( 'WC' ) ) {
 		add_action( 'admin_notices', 'YayMail\\install_yaymail_admin_notice' );
@@ -57,6 +60,7 @@ function init() {
 	I18n::getInstance();
 	Page\Settings::getInstance();
 	MailBuilder\WooTemplate::getInstance();
+	MailBuilder\YaymailElement::getInstance();
 }
 add_action( 'plugins_loaded', 'YayMail\\init' );
 

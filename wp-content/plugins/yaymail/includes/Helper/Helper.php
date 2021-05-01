@@ -40,6 +40,12 @@ class Helper {
 		return apply_filters( 'woocommerce_email_subject_customer_invoice', $objEmail->format_string( $subject ), $objEmail->object, $objEmail );
 	}
 
+	// Get Subject for email WC_Email_New_Booking (Woo Bookings plugin)
+	public static function getNewBookingSubject( $objEmail ) {
+		$subject = $objEmail->get_option( 'subject', $objEmail->subject );
+		return apply_filters( 'woocommerce_email_subject_' . $objEmail->id, $objEmail->format_string( $subject ), $objEmail->object );
+	}
+
 	// Check Key Exist
 	public static function checkKeyExist( $array, $key, $valueDefault ) {
 		if ( isset( $array->$key ) ) {

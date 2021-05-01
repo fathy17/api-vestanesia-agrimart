@@ -7,6 +7,7 @@ use YayMail\Helper\LogHelper;
 use YayMail\MailBuilder\Shortcodes;
 use YayMail\Page\Source\CustomPostType;
 use YayMail\Page\Source\DefaultElement;
+use YayMail\Page\Source\UpdateElement;
 use YayMail\Templates\Templates;
 
 defined( 'ABSPATH' ) || exit;
@@ -64,6 +65,71 @@ class Ajax {
 
 	}
 
+	public static function getHtmlByElements( $postID, $args = array() ) {
+		$updateElement        = new UpdateElement();
+		$yaymail_elements     = get_post_meta( $postID, '_yaymail_elements', true );
+		$yaymail_elements     = $updateElement->merge_new_props_to_elements( $yaymail_elements );
+		$yaymail_settings     = get_option( 'yaymail_settings' );
+		$emailBackgroundColor = get_post_meta( $postID, '_email_backgroundColor_settings', true ) ? get_post_meta( $postID, '_email_backgroundColor_settings', true ) : '#ECECEC';
+		$general_attrs        = array( 'tableWidth' => str_replace( 'px', '', $yaymail_settings['container_width'] ) );
+		$html                 = '<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1"/>
+				<style>
+				h1{ font-family:inherit;text-shadow:unset;text-align:inherit;}
+				h2,h3{ font-family:inherit;color:inherit;text-align:inherit;}
+				</style>
+			</head><body style="background:' . esc_html( $emailBackgroundColor ) . '">';
+		foreach ( $yaymail_elements as $key => $element ) {
+			// add shortcode params
+			$reg_pattern = '/\[([a-z0-9A-Z_]+)\]/';
+			if ( isset( $element['settingRow']['content'] ) ) {
+				$content      = $element['settingRow']['content'];
+				$contentTitle = isset( $element['settingRow']['contentTitle'] ) ? $element['settingRow']['contentTitle'] : '';
+
+				// Add $atts for content if has shortcode
+				preg_match_all( $reg_pattern, $content, $result );
+				if ( ! empty( $result[0] ) ) {
+					foreach ( $result[0] as $key => $shortcode ) {
+						$textcolor     = isset( $element['settingRow']['textColor'] ) ? ' textcolor=' . $element['settingRow']['textColor'] : '';
+						$bordercolor   = isset( $element['settingRow']['borderColor'] ) ? ' bordercolor=' . $element['settingRow']['borderColor'] : '';
+						$titlecolor    = isset( $element['settingRow']['titleColor'] ) ? ' titlecolor=' . $element['settingRow']['titleColor'] : '';
+						$fontfamily    = isset( $element['settingRow']['family'] ) ? ' fontfamily=' . str_replace( ' ', '', str_replace( array( '\'', '"' ), '', $element['settingRow']['family'] ) ) : '';
+						$newshortcode  = substr( $shortcode, 0, -1 );
+						$newshortcode .= $textcolor . $bordercolor . $titlecolor . $fontfamily . ']';
+						$content       = str_replace( $shortcode, $newshortcode, $content );
+					}
+					$element['settingRow']['content'] = $content;
+				}
+				// Add $atts for contentTitle if has shortcode
+				if ( $contentTitle ) {
+					preg_match_all( $reg_pattern, $contentTitle, $result );
+					if ( ! empty( $result[0] ) ) {
+						foreach ( $result[0] as $key => $shortcode ) {
+							$textcolor     = isset( $element['settingRow']['textColor'] ) ? ' textcolor=' . $element['settingRow']['textColor'] : '';
+							$bordercolor   = isset( $element['settingRow']['borderColor'] ) ? ' bordercolor=' . $element['settingRow']['borderColor'] : '';
+							$titlecolor    = isset( $element['settingRow']['titleColor'] ) ? ' titlecolor=' . $element['settingRow']['titleColor'] : '';
+							$fontfamily    = isset( $element['settingRow']['family'] ) ? ' fontfamily=' . str_replace( ' ', '', str_replace( array( '\'', '"' ), '', $element['settingRow']['family'] ) ) : '';
+							$newshortcode  = substr( $shortcode, 0, -1 );
+							$newshortcode .= $textcolor . $bordercolor . $titlecolor . $fontfamily . ']';
+							$contentTitle  = str_replace( $shortcode, $newshortcode, $contentTitle );
+						}
+						$element['settingRow']['contentTitle'] = $contentTitle;
+					}
+				}
+			}
+			ob_start();
+			do_action( 'Yaymail' . $element['type'], $args, $element['settingRow'], $general_attrs, $element['id'], $postID );
+			$el_html = ob_get_clean();
+			$html   .= $el_html;
+		}
+		$html .= '</body></html>';
+		return $html;
+	}
+
 	// html output of mail must to map with html output in single-mail-template.php
 	public function sendTestMail() {
 		try {
@@ -84,12 +150,19 @@ class Ajax {
 						$customShortcode = new Shortcodes( $template, sanitize_text_field( $_POST['order_id'] ) );
 						if ( sanitize_text_field( $_POST['order_id'] ) !== 'sampleOrder' ) {
 							$order_id = intval( sanitize_text_field( $_POST['order_id'] ) );
+							$WC_order = new \WC_Order( $order_id );
 						}
 						$postID   = CustomPostType::postIDByTemplate( $template );
 						$order_tn = 'mail-sent';
 						$customShortcode->setOrderId( $order_id, true );
 						$customShortcode->shortCodesOrderDefined();
-						$html         = do_shortcode( get_post_meta( $postID, '_yaymail_html', true ) );
+						if ( isset( $WC_order ) ) {
+							$html = self::getHtmlByElements( $postID, array( 'order' => $WC_order ) );
+						} else {
+							$html = self::getHtmlByElements( $postID, array( 'order' => 'SampleOrder' ) );
+						}
+
+						// $html         = do_shortcode( get_post_meta( $postID, '_yaymail_html', true ) );
 						$html         = html_entity_decode( $html, ENT_QUOTES, 'UTF-8' );
 						$headers      = "Content-Type: text/html\r\n";
 						$sendMail     = \WC_Emails::instance();
@@ -126,6 +199,8 @@ class Ajax {
 			if ( $item->id == $template ) {
 				if ( 'customer_invoice' == $template ) {
 					$subject = Helper::getCustomerInvoiceSubject( $wc_emails->emails[ $email ] );
+				} if ( 'new_booking' == $template ) {
+					$subject = Helper::getNewBookingSubject( $wc_emails->emails[ $email ] );
 				} else {
 					$subject = $wc_emails->emails[ $email ]->get_subject();
 				}
@@ -151,7 +226,16 @@ class Ajax {
 					$orderTitle           = isset( $_POST['orderTitle'] ) ? filter_var_array( $_POST['orderTitle'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					$template             = sanitize_text_field( $_POST['template'] );
 					$htmlContent          = filter_var( $_POST['htmlContent'], FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_STRIP_LOW );
-					$emailContents        = isset( $_POST['emailContents'] ) ? filter_var_array( $_POST['emailContents'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					$updateElement        = new UpdateElement();
+					$setDefaultLogo       = isset( $_POST['setDefaultLogo'] ) ? 'true' == sanitize_text_field( $_POST['setDefaultLogo'] ) ? true : false : false;
+					$setDefaultFooter     = isset( $_POST['setDefaultFooter'] ) ? 'true' == sanitize_text_field( $_POST['setDefaultFooter'] ) ? true : false : false;
+					if ( isset( $_POST['emailContents'] ) ) {
+						$emailContents = filter_var_array( $_POST['emailContents'] );
+						$emailContents = $updateElement->merge_new_props_to_elements( $emailContents );
+					} else {
+						$emailContents = array();
+					}
+					// $emailContents = isset( $_POST['emailContents'] ) ? filter_var_array( $_POST['emailContents'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					foreach ( $emailContents as $key => $value ) {
 						if ( 'TwoColumns' == $value['type'] || 'ThreeColumns' == $value['type'] || 'FourColumns' == $value['type'] ) {
 							if ( ! array_key_exists( 'column1', $emailContents[ $key ]['settingRow'] ) ) {
@@ -181,6 +265,59 @@ class Ajax {
 						update_post_meta( $postID, '_email_title_shipping', $titleShipping );
 						update_post_meta( $postID, '_email_title_billing', $titleBilling );
 						update_post_meta( $postID, '_yaymail_email_order_item_title', $orderTitle );
+						// Change default logo
+						$default_logo = array(
+							'set_default' => (bool) $setDefaultLogo,
+						);
+						if ( 'true' == $setDefaultLogo ) {
+							$posts = CustomPostType::getListPostTemplate();
+							foreach ( $emailContents as $key => $element ) {
+								if ( 'Logo' == $element['type'] ) {
+									$logoDefault = $element['settingRow'];
+									break;
+								}
+							}
+
+							if ( count( $posts ) > 0 && isset( $logoDefault ) ) {
+								foreach ( $posts as $post ) {
+									$yaymail_elements = get_post_meta( $post->ID, '_yaymail_elements', true );
+									foreach ( $yaymail_elements as $key => $element ) {
+										if ( 'Logo' == $element['type'] ) {
+											$yaymail_elements[ $key ]['settingRow'] = wp_parse_args( $logoDefault, $yaymail_elements[ $key ]['settingRow'] );
+										}
+									}
+									update_post_meta( $post->ID, '_yaymail_elements', $yaymail_elements );
+								}
+							}
+						}
+						update_option( 'yaymail_settings_default_logo', $default_logo );
+						// Change default footer
+						$default_footer = array(
+							'set_default' => (bool) $setDefaultFooter,
+						);
+						if ( 'true' == $setDefaultFooter ) {
+							$posts = CustomPostType::getListPostTemplate();
+							foreach ( $emailContents as $key => $element ) {
+								if ( 'ElementText' == $element['type'] && 'Footer' == $element['nameElement'] ) {
+									$footerDefault = $element['settingRow'];
+									break;
+								}
+							}
+
+							if ( count( $posts ) > 0 && isset( $footerDefault ) ) {
+								foreach ( $posts as $post ) {
+									$yaymail_elements = get_post_meta( $post->ID, '_yaymail_elements', true );
+									foreach ( $yaymail_elements as $key => $element ) {
+										if ( 'ElementText' == $element['type'] && 'Footer' == $element['nameElement'] ) {
+											$yaymail_elements[ $key ]['settingRow'] = wp_parse_args( $footerDefault, $yaymail_elements[ $key ]['settingRow'] );
+										}
+									}
+									update_post_meta( $post->ID, '_yaymail_elements', $yaymail_elements );
+								}
+							}
+						}
+						update_option( 'yaymail_settings_default_footer', $default_footer );
+
 						wp_send_json_success( array( 'mess' => __( 'Email has been saved.', 'yaymail' ) ) );
 					} else {
 						wp_send_json_error( array( 'mess' => __( 'Template not Exists!.', 'yaymail' ) ) );
@@ -258,13 +395,22 @@ class Ajax {
 					$templateEmail = \YayMail\Templates\Templates::getInstance();
 					$templates     = $templateEmail::getList();
 					$orderTitle    = array(
-						'order_title'          => '',
-						'product_title'        => 'Product',
-						'quantity_title'       => 'Quantity',
-						'price_title'          => 'Price',
-						'subtoltal_title'      => 'Subtotal:',
-						'payment_method_title' => 'Payment method:',
-						'total_title'          => 'Total:',
+						'order_title'                   => '',
+						'product_title'                 => 'Product',
+						'quantity_title'                => 'Quantity',
+						'price_title'                   => 'Price',
+						'subtoltal_title'               => 'Subtotal:',
+						'payment_method_title'          => 'Payment method:',
+						'total_title'                   => 'Total:',
+						'subscript_id'                  => 'ID',
+						'subscript_start_date'          => 'Start date',
+						'subscript_end_date'            => 'End date',
+						'subscript_recurring_total'     => 'Recurring total',
+						'subscript_subscription'        => 'Subscription',
+						'subscript_price'               => 'Price',
+						'subscript_last_order_date'     => 'Last Order Date',
+						'subscript_end_of_prepaid_term' => 'End of Prepaid Term',
+						'subscript_date_suspended'      => 'Date Suspended',
 					);
 					if ( 'all' == $reset ) {
 						foreach ( $templates as $key => $template ) {
@@ -283,6 +429,7 @@ class Ajax {
 						if ( get_option( 'yaymail_settings' ) ) {
 							$yaymail_settings                    = get_option( 'yaymail_settings' );
 							$yaymail_settings['container_width'] = '605px';
+							$yaymail_settings['direction_rtl'] = 'ltr';
 							update_option( 'yaymail_settings', $yaymail_settings );
 						}
 
@@ -436,8 +583,7 @@ class Ajax {
 					$settingDefault = CustomPostType::templateEnableDisable();
 					$listTemplates  = ! empty( $settingDefault ) ? array_keys( $settingDefault ) : array();
 					$settingCurrent = wp_unslash( $_POST['settings'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-
-					isset( $settingCurrent['yaymail_direction'] ) ? update_option( 'yaymail_direction', $settingCurrent['yaymail_direction'] ) : update_option( 'yaymail_direction', 'ltr' );
+					
 					if ( ! empty( $listTemplates ) ) {
 						foreach ( $settingCurrent as $key => $value ) {
 							if ( in_array( $key, $listTemplates ) ) {
@@ -464,6 +610,9 @@ class Ajax {
 				wp_send_json_error( array( 'mess' => 'Nonce is invalid' ) );
 			} else {
 				if ( isset( $_POST['settings'] ) ) {
+					$setting           = wp_unslash( $_POST['settings'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					$yaymail_direction = $setting['direction_rtl'];
+					isset( $yaymail_direction ) ? update_option( 'yaymail_direction', $yaymail_direction ) : update_option( 'yaymail_direction', 'ltr' );
 					// Helper::checkNonce();
 					update_option( 'yaymail_settings', wp_unslash( $_POST['settings'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					wp_send_json_success( array( 'mess' => __( 'Settings saved.', 'yaymail' ) ) );

@@ -48,21 +48,8 @@ class CustomPostType {
 	// }
 	// }
 	public static function templateEnableDisable( $getPostID = true ) {
-		$template_export             = array();
-		$posts                       = self::getListPostTemplate();
-		$settingDefaultEnableDisable = array(
-			'new_order'                 => 1,
-			'cancelled_order'           => 1,
-			'failed_order'              => 1,
-			'customer_on_hold_order'    => 1,
-			'customer_processing_order' => 1,
-			'customer_completed_order'  => 1,
-			'customer_refunded_order'   => 1,
-			'customer_invoice'          => 0,
-			'customer_note'             => 0,
-			'customer_reset_password'   => 0,
-			'customer_new_account'      => 0,
-		);
+		$template_export = array();
+		$posts           = self::getListPostTemplate();
 		if ( count( $posts ) > 0 ) {
 			foreach ( $posts as $key => $post ) {
 				$template = get_post_meta( $post->ID, '_yaymail_template', true );
@@ -70,13 +57,7 @@ class CustomPostType {
 					$template_export[ $template ]['post_id']         = $post->ID;
 					$template_export[ $template ]['_yaymail_status'] = get_post_meta( $post->ID, '_yaymail_status', true );
 				} else {
-					// free version
-					if ( array_key_exists( $template, $settingDefaultEnableDisable ) ) {
-						$template_export[ $template ] = get_post_meta( $post->ID, '_yaymail_status', true );
-					} else {
-						update_post_meta( $post->ID, '_yaymail_status', 0 );
-						$template_export[ $template ] = get_post_meta( $post->ID, '_yaymail_status', false );
-					}
+					$template_export[ $template ] = get_post_meta( $post->ID, '_yaymail_status', true );
 				}
 			}
 		}
@@ -95,7 +76,7 @@ class CustomPostType {
 			$insert_id = wp_insert_post( $arr );
 			if ( 'yaymail_template' == $args['post_type'] ) {
 				update_post_meta( $insert_id, '_yaymail_template', $args['_yaymail_template'] );
-				update_post_meta( $insert_id, '_yaymail_html', $args['_yaymail_html'] );
+				// update_post_meta( $insert_id, '_yaymail_html', $args['_yaymail_html'] );
 				update_post_meta( $insert_id, '_yaymail_elements', $args['_yaymail_elements'] );
 				update_post_meta( $insert_id, '_yaymail_email_backgroundColor_settings', $args['_email_backgroundColor_settings'] );
 				update_post_meta( $insert_id, '_yaymail_status', 0 );

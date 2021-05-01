@@ -1,0 +1,82 @@
+2021-04-25T07:45:26+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-25T07:46:05+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T07:46:05+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T07:48:41+00:00 NOTICE product.delete_fail :: Unable to deleted product 166
+2021-04-25T07:48:42+00:00 NOTICE product.delete_fail :: Unable to deleted product 75
+2021-04-25T07:48:43+00:00 NOTICE product.delete_fail :: Unable to deleted product 39
+2021-04-25T07:48:44+00:00 NOTICE product.delete_fail :: Unable to deleted product 37
+2021-04-25T07:48:45+00:00 NOTICE product.delete_fail :: Unable to deleted product 36
+2021-04-25T07:48:46+00:00 NOTICE product.delete_fail :: Unable to deleted product 29
+2021-04-25T07:48:46+00:00 NOTICE product.delete_fail :: Unable to deleted product 28
+2021-04-25T07:48:47+00:00 NOTICE product.delete_fail :: Unable to deleted product 27
+2021-04-25T07:48:48+00:00 NOTICE product.delete_fail :: Unable to deleted product 26
+2021-04-25T07:48:49+00:00 NOTICE product.delete_fail :: Unable to deleted product 25
+2021-04-25T07:48:50+00:00 NOTICE product.delete_fail :: Unable to deleted product 24
+2021-04-25T07:48:51+00:00 NOTICE product.delete_fail :: Unable to deleted product 23
+2021-04-25T07:48:52+00:00 NOTICE product.delete_fail :: Unable to deleted product 22
+2021-04-25T07:48:53+00:00 NOTICE product.delete_fail :: Unable to deleted product 21
+2021-04-25T07:48:54+00:00 NOTICE product.delete_fail :: Unable to deleted product 20
+2021-04-25T07:48:55+00:00 NOTICE product.delete_fail :: Unable to deleted product 19
+2021-04-25T07:48:56+00:00 NOTICE product.delete_fail :: Unable to deleted product 18
+2021-04-25T07:48:57+00:00 NOTICE product.delete_fail :: Unable to deleted product 17
+2021-04-25T07:48:59+00:00 NOTICE product.delete_fail :: Unable to deleted product 16
+2021-04-25T08:29:39+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 173
+2021-04-25T08:30:02+00:00 NOTICE product_submit.error :: addStoreProduct :: #173 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T08:39:31+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 175
+2021-04-25T08:40:16+00:00 NOTICE product_submit.error :: addStoreProduct :: #175 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T08:42:28+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 177
+2021-04-25T08:43:23+00:00 NOTICE product_submit.error :: addStoreProduct :: #177 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T08:45:42+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 179
+2021-04-25T08:46:00+00:00 NOTICE product_submit.error :: addStoreProduct :: #179 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T08:49:48+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 181
+2021-04-25T08:50:05+00:00 NOTICE product_submit.error :: addStoreProduct :: #181 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T08:50:29+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 173
+2021-04-25T08:52:53+00:00 NOTICE product_submit.error :: addStoreProduct :: #173 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T09:07:01+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 173
+2021-04-25T09:08:04+00:00 NOTICE product_submit.error :: addStoreProduct :: #173 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T09:14:35+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 182
+2021-04-25T09:15:07+00:00 NOTICE product_submit.error :: addStoreProduct :: #182 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T09:16:05+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 182
+2021-04-25T09:18:10+00:00 NOTICE product_submit.error :: addStoreProduct :: #182 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T09:31:25+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-25T09:32:28+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T09:32:28+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T09:32:58+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-25T09:33:01+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T09:33:02+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-25T11:39:24+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 187
+2021-04-25T11:41:49+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T11:41:50+00:00 NOTICE order_sumbit :: #187 has a financial status of pending and was skipped.
+2021-04-25T11:49:30+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 188
+2021-04-25T11:53:50+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T11:53:51+00:00 NOTICE order_sumbit :: #188 has a financial status of pending and was skipped.
+2021-04-25T15:39:10+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 187
+2021-04-25T15:39:10+00:00 NOTICE debug :: Order ID 187 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-25T15:39:10+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 188
+2021-04-25T15:39:10+00:00 NOTICE debug :: Order ID 188 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-25T15:59:30+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T15:59:32+00:00 NOTICE order_sumbit :: #187 has a financial status of cancelled and was skipped.
+2021-04-25T15:59:33+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T15:59:34+00:00 NOTICE order_sumbit :: #188 has a financial status of cancelled and was skipped.
+2021-04-25T16:01:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 189
+2021-04-25T16:04:30+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T16:04:31+00:00 NOTICE order_sumbit :: #189 has a financial status of pending and was skipped.
+2021-04-25T17:24:05+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 189
+2021-04-25T17:24:05+00:00 NOTICE debug :: Order ID 189 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-25T17:27:10+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-25T17:27:12+00:00 NOTICE order_sumbit :: #189 has a financial status of cancelled and was skipped.

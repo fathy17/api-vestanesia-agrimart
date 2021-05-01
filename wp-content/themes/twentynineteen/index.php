@@ -18,7 +18,7 @@
 get_header();
 ?>
 <script>
-	window.location.href = 'http://localhost:3000/'
+	// window.location.href = 'http://localhost:3000/'
 </script>
 <div id="primary" class="content-area">
 	<main id="main" class="site-main">

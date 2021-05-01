@@ -24,30 +24,24 @@ $get_order_item_totals_class = array(
 	'payment_method' => 'yaymail_item_payment_method_title',
 	'order_total'    => 'yaymail_item_total_title',
 );
-
-$borderColor = isset( $atts['bordercolor'] ) && $atts['bordercolor'] ? 'border-color:' . html_entity_decode( $atts['bordercolor'], ENT_QUOTES, 'UTF-8' ) : 'border-color:inherit';
-$textColor   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . html_entity_decode( $atts['textcolor'], ENT_QUOTES, 'UTF-8' ) : 'color:inherit';
-
+$borderColor                 = isset( $atts['bordercolor'] ) && $atts['bordercolor'] ? 'border-color:' . html_entity_decode( $atts['bordercolor'], ENT_QUOTES, 'UTF-8' ) : 'border-color:inherit';
+$textColor                   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . html_entity_decode( $atts['textcolor'], ENT_QUOTES, 'UTF-8' ) : 'color:inherit';
 ?>
 
 
-<!-- Table Items has Border -->
-<!-- <table class="yaymail_builder_table_items_border" cellspacing="0" cellpadding="6" border="1" style="width: 100% !important;color: inherit;flex-direction:inherit;" width="100%">
-	<thead> -->
+
 		<tr style="word-break: normal">
-			<th class="td yaymail_item_product_title" scope="col" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>">
+			<th class="td yaymail_item_product_title" scope="col" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;">
 				<?php esc_html_e( $product_title, 'woocommerce' ); ?>
 			</th>
-			<th class="td yaymail_item_quantity_title" scope="col" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>">
+			<th class="td yaymail_item_quantity_title" scope="col" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;">
 				<?php esc_html_e( $quantity_title, 'woocommerce' ); ?>
 			</th>
-			<th class="td yaymail_item_price_title" scope="col" style="width: 30%;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>">
+			<th class="td yaymail_item_price_title" scope="col" style="width: 30%;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;">
 				<?php esc_html_e( $price_title, 'woocommerce' ); ?>
 			</th>
 		</tr>
-	<!-- </thead> -->
 
-	<!-- <tbody style="flex-direction:inherit;"> -->
 		<?php
 		echo wp_kses_post(
 			$this->ordetItemTables(
@@ -75,15 +69,13 @@ $textColor   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . ht
 			?>
 
 			<tr>
-				<td class="td" scope="row" colspan="3" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>">
+			<th class="td" scope="row" colspan="3" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>;">
 					<?php esc_html_e( $purchase_note, 'woocommerce' ); ?>
-				</td>
+				</th>
 			</tr>
 
 		<?php } ?>
-	<!-- </tbody>
 
-	<tfoot> -->
 		<?php
 		$totalItem = $order->get_order_item_totals();
 		$i         = 0;
@@ -97,7 +89,7 @@ $textColor   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . ht
 			if ( array_key_exists( $key, $get_order_item_totals_class ) ) {
 				echo esc_html( $get_order_item_totals_class[ $key ] );}
 			?>
-			" scope="row" colspan="2" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?> <?php echo esc_attr( ( 1 === $i ) ? ';border-top-width: 4px;' : '' ); ?>">
+			" scope="row" colspan="2" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>; <?php echo esc_attr( ( 1 === $i ) ? 'border-top-width: 4px;' : '' ); ?>">
 				<?php
 				if ( array_key_exists( $key, $get_order_item_totals ) ) {
 					echo esc_html_e( $get_order_item_totals[ $key ], 'woocommerce' );
@@ -106,9 +98,9 @@ $textColor   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . ht
 				}
 				?>
 			</th>
-			<td class="td" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?> <?php echo esc_attr( ( 1 === $i ) ? ';border-top-width: 4px;' : '' ); ?>">
+			<th class="td" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>; <?php echo esc_attr( ( 1 === $i ) ? 'border-top-width: 4px;' : '' ); ?>">
 			<?php echo wp_kses_post( $total['value'] ); ?>
-			</td>
+			</th>
 		</tr>
 
 			<?php
@@ -119,14 +111,13 @@ $textColor   = isset( $atts['textcolor'] ) && $atts['textcolor'] ? 'color:' . ht
 			?>
 
 			<tr>
-				<th class="td" scope="row" colspan="2" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?> <?php echo esc_attr( ( 1 === $i ) ? ';border-top-width: 4px;' : '' ); ?>">
-			<?php esc_html_e( 'Note:', 'woocommerce' ); ?>
+				<th class="td" scope="row" colspan="2" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>; <?php echo esc_attr( ( 1 === $i ) ? 'border-top-width: 4px;' : '' ); ?>">
+					<?php esc_html_e( 'Note:', 'woocommerce' ); ?>
 				</th>
-				<td class="td" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?> <?php echo esc_attr( ( 1 === $i ) ? ';border-top-width: 4px;' : '' ); ?>">
-			<?php echo esc_html( $note ); ?>
-				</td>
+				<th class="td" style="font-weight: normal;text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( $borderColor ); ?>; <?php echo esc_attr( ( 1 === $i ) ? 'border-top-width: 4px;' : '' ); ?>">
+					<?php echo esc_html( $note ); ?>
+				</th>
 			</tr>
 
 		<?php } ?>
-	<!-- </tfoot>
-</table> -->
+

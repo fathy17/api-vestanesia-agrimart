@@ -1,0 +1,194 @@
+2021-04-21T06:24:03+00:00 NOTICE sync_store :: posting data :: Array
+(
+    [store_post] => Array
+        (
+            [id] => 607b67f206027
+            [is_syncing] => 
+            [platform] => woocommerce
+            [list_id] => 6fd09924b5
+            [name] => Fathy Fahrezy
+            [domain] => http://localhost/project1
+            [email_address] => fathyfahrezy17@gmail.com
+            [currency_code] => IDR
+            [money_format] => Rp
+            [primary_locale] => id_ID
+            [timezone] => +00:00
+            [phone] => 081342217536
+            [address] => Array
+                (
+                    [address1] => BTN Pao-Permai Blok D7/4
+                    [city] => Gowa
+                    [province] => Sulawesi Selatan
+                    [postal_code] => 92113
+                    [country] => ID
+                    [country_code] => ID
+                    [phone] => 081342217536
+                    [company] => Fathy Fahrezy
+                )
+
+        )
+
+)
+
+2021-04-21T06:24:04+00:00 NOTICE store.sync@woo.update :: Store cannot be synced
+2021-04-21T06:34:59+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-21T06:35:02+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-21T06:35:02+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T06:35:02+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-21T06:35:03+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T06:35:04+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-21T06:35:21+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-21T06:36:02+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T06:36:03+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-21T06:36:12+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-21T06:36:20+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T06:36:20+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-21T09:39:43+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 154
+2021-04-21T09:41:31+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 155
+2021-04-21T09:41:32+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T09:41:33+00:00 NOTICE order_sumbit :: #154 has a financial status of pending and was skipped.
+2021-04-21T09:42:37+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 156
+2021-04-21T09:43:32+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 157
+2021-04-21T09:43:32+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T09:43:33+00:00 NOTICE order_sumbit :: #155 has a financial status of pending and was skipped.
+2021-04-21T09:45:11+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T09:45:12+00:00 NOTICE order_sumbit :: #156 has a financial status of pending and was skipped.
+2021-04-21T09:45:12+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T09:45:13+00:00 NOTICE order_sumbit :: #157 has a financial status of pending and was skipped.
+2021-04-21T09:45:37+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 158
+2021-04-21T09:50:58+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T09:50:59+00:00 NOTICE order_sumbit :: #158 has a financial status of pending and was skipped.
+2021-04-21T10:11:06+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 159
+2021-04-21T10:12:38+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T10:12:39+00:00 NOTICE order_sumbit :: #159 has a financial status of pending and was skipped.
+2021-04-21T10:12:53+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 160
+2021-04-21T10:13:31+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 161
+2021-04-21T10:14:04+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 162
+2021-04-21T10:14:52+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T10:14:53+00:00 NOTICE order_sumbit :: #160 has a financial status of pending and was skipped.
+2021-04-21T10:16:54+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T10:16:54+00:00 NOTICE order_sumbit :: #161 has a financial status of pending and was skipped.
+2021-04-21T10:16:55+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T10:16:56+00:00 NOTICE order_sumbit :: #162 has a financial status of pending and was skipped.
+2021-04-21T10:18:46+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 163
+2021-04-21T10:20:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 164
+2021-04-21T10:20:55+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T10:20:56+00:00 NOTICE order_sumbit :: #163 has a financial status of pending and was skipped.
+2021-04-21T10:22:57+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T10:22:58+00:00 NOTICE order_sumbit :: #164 has a financial status of pending and was skipped.
+2021-04-21T10:35:19+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-21T10:36:35+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T10:36:36+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 154
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 154 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 155
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 155 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 156
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 156 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 157
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 157 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 158
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 158 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 159
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 159 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 160
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 160 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 161
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 161 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 162
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 162 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 163
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 163 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T13:15:27+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 164
+2021-04-21T13:15:27+00:00 NOTICE debug :: Order ID 164 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T14:07:24+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:25+00:00 NOTICE order_sumbit :: #154 has a financial status of cancelled and was skipped.
+2021-04-21T14:07:26+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:28+00:00 NOTICE order_sumbit :: #155 has a financial status of cancelled and was skipped.
+2021-04-21T14:07:28+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:30+00:00 NOTICE order_sumbit :: #156 has a financial status of cancelled and was skipped.
+2021-04-21T14:07:31+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:33+00:00 NOTICE order_sumbit :: #157 has a financial status of cancelled and was skipped.
+2021-04-21T14:07:33+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:35+00:00 NOTICE order_sumbit :: #158 has a financial status of cancelled and was skipped.
+2021-04-21T14:07:36+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:39+00:00 NOTICE order_sumbit :: #159 has a financial status of cancelled and was skipped.
+2021-04-21T14:07:40+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:42+00:00 NOTICE order_sumbit :: #160 has a financial status of cancelled and was skipped.
+2021-04-21T14:07:46+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T14:07:48+00:00 NOTICE order_sumbit :: #161 has a financial status of cancelled and was skipped.
+2021-04-21T15:31:57+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T15:31:58+00:00 NOTICE order_sumbit :: #162 has a financial status of cancelled and was skipped.
+2021-04-21T15:31:59+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T15:32:01+00:00 NOTICE order_sumbit :: #163 has a financial status of cancelled and was skipped.
+2021-04-21T15:32:01+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T15:32:03+00:00 NOTICE order_sumbit :: #164 has a financial status of cancelled and was skipped.
+2021-04-21T16:51:49+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 165
+2021-04-21T16:54:25+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T16:54:26+00:00 NOTICE order_sumbit :: #165 has a financial status of pending and was skipped.
+2021-04-21T19:19:08+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 90 seconds :: obj_id 165
+2021-04-21T19:19:08+00:00 NOTICE debug :: Order ID 165 was pending and is now cancelled :: Array
+(
+    [new_order] => 
+    [tracking] => 
+)
+
+2021-04-21T19:21:12+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-21T19:21:14+00:00 NOTICE order_sumbit :: #165 has a financial status of cancelled and was skipped.
+2021-04-21T19:37:35+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 166
+2021-04-21T19:38:02+00:00 NOTICE product_submit.error :: addStoreProduct :: #166 :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php

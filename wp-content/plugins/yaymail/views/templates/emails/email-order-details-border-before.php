@@ -65,7 +65,7 @@ if ( false != $paymentGateways && isset( $paymentGateways->account_details ) ) {
 		?>
 
 		<section style="text-align: ' . $text_align . '" class="yaymail_builder_wrap_account">
-			<h2 style="color: inherit;" class="yaymail_builder_bank_details">
+		<h2 style="color: inherit;" class="yaymail_builder_bank_details">
 		<?php esc_html_e( 'Our bank details', 'woocommerce' ); ?>
 			</h2>
 
@@ -84,7 +84,7 @@ if ( false != $paymentGateways && isset( $paymentGateways->account_details ) ) {
 			}
 			?>
 
-				<ul style="color: <?php echo esc_attr( $colorContentTableItems ); ?>">
+			<ul style="color: <?php echo esc_attr( $colorContentTableItems ); ?>">
 			<?php
 			foreach ( $accounts as $label_name => $infor_account ) {
 				if ( 'account_name' !== $label_name && ! empty( $infor_account ) ) {

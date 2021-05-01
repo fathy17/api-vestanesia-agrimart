@@ -8,12 +8,56 @@ $yaymail_settings   = get_option( 'yaymail_settings' );
 $orderImagePostions = isset( $yaymail_settings['image_position'] ) && ! empty( $yaymail_settings['image_position'] ) ? $yaymail_settings['image_position'] : 'Top';
 $orderImage         = isset( $yaymail_settings['product_image'] ) && '0' != $yaymail_settings['product_image'] ? $yaymail_settings['product_image'] : '0';
 
+if ( ! function_exists( 'yaymail_get_global_taxonomy_attribute_data' ) ) :
+	function yaymail_get_global_taxonomy_attribute_data( $name, $product, $single_product = null ) {
+		$out = array();
+
+		$product_id = is_numeric( $product ) ? $product : $product->get_id();
+		$terms      = wp_get_post_terms( $product_id, $name, 'all' );
+
+		if ( ! empty( $terms ) ) {
+			if ( ! is_wp_error( $terms ) ) {
+				$tax        = $terms[0]->taxonomy;
+				$tax_object = get_taxonomy( $tax );
+				if ( isset( $tax_object->labels->singular_name ) ) {
+					$out['label'] = $tax_object->labels->singular_name;
+				} elseif ( isset( $tax_object->label ) ) {
+					$out['label'] = $tax_object->label;
+					$label_prefix = __( 'Product', 'woocommerce-show-attributes' ) . ' ';
+					if ( 0 === strpos( $out['label'], $label_prefix ) ) {
+						$out['label'] = substr( $out['label'], strlen( $label_prefix ) );
+					}
+				}
+				$tax_terms = array();
+				foreach ( $terms as $term ) {
+					$single_term = sprintf( __( '%s', 'woocommerce-show-attributes' ), esc_html( $term->name ) );
+
+					// Show terms as links?
+					if ( $single_product ) {
+						if ( get_option( 'wcsa_terms_as_links' ) == 'yes' ) {
+							$term_link = get_term_link( $term );
+							if ( ! is_wp_error( $term_link ) ) {
+								$single_term = '<a href="' . esc_url( $term_link ) . '">' . sprintf( __( '%s', 'woocommerce-show-attributes' ), esc_html( $term->name ) ) . '</a>';
+							}
+						}
+					}
+					array_push( $tax_terms, $single_term );
+				}
+				$out['value'] = implode( ', ', $tax_terms );
+			}
+		}
+
+		return $out;
+	}
+endif;
+
 foreach ( $items as $item_id => $item ) :
 	if ( apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
-						$product = $item->get_product();
+						$product           = $item->get_product();
+						$result_attributes = array();
 		?>
 		<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'order_item', $item, $order ) ); ?>">
-			<td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;word-wrap:break-word;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>">
+		<th class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;font-weight: normal;word-wrap:break-word;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>;">
 		<?php
 
 		if ( 'Bottom' == $orderImagePostions && '1' == $orderImage ) {
@@ -68,13 +112,13 @@ foreach ( $items as $item_id => $item ) :
 		do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, $args['plain_text'] );
 		?>
 
-			</td>
-			<td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>; vertical-align:middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>">
+			</th>
+			<th class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;font-weight: normal; vertical-align:middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>;">
 		<?php echo wp_kses_post( apply_filters( 'woocommerce_email_order_item_quantity', $item->get_quantity(), $item ) ); ?>
-			</td>
-			<td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>; word-break: break-all;">
+			</th>
+			<th class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;font-weight: normal;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>; word-break: break-all;">
 		<?php echo wp_kses_post( $order->get_formatted_line_subtotal( $item ) ); ?>
-			</td>
+			</th>
 		</tr>
 		<?php
 	}
@@ -88,9 +132,9 @@ foreach ( $items as $item_id => $item ) :
 		?>
 
 		<tr>
-			<td colspan="3" style="text-align:<?php echo esc_attr( $text_align ); ?>;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>">
+		<th colspan="3" style="text-align:<?php echo esc_attr( $text_align ); ?>;font-weight: normal;vertical-align: middle;padding: 12px;font-size: 14px;border-width: 1px;border-style: solid;<?php echo esc_attr( isset( $default_args['border_color'] ) ? $default_args['border_color'] : '' ); ?>;">
 		<?php echo esc_html( wpautop( do_shortcode( wp_kses_post( $purchase_note ) ) ) ); ?>
-			</td>
+			</th>
 		</tr>
 		 
 	<?php } ?>

@@ -1,0 +1,50 @@
+2021-05-01T06:51:03+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($function) must be a valid callback, function "graphql_activation_callback" not found or invalid function name in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php:292
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#1 C:\xampp\htdocs\project1\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#2 C:\xampp\htdocs\project1\wp-admin\includes\plugin.php(701): do_action('activate_wp-gra...', false)
+#3 C:\xampp\htdocs\project1\wp-admin\plugins.php(58): activate_plugin('wp-graphql-rele...', 'http://localhos...', false)
+#4 {main}
+  thrown in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php on line 292
+
+2021-05-01T06:51:06+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($function) must be a valid callback, function "graphql_activation_callback" not found or invalid function name in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php:292
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#1 C:\xampp\htdocs\project1\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#2 C:\xampp\htdocs\project1\wp-admin\plugins.php(193): do_action('activate_wp-gra...')
+#3 {main}
+  thrown in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php on line 292
+
+2021-05-01T06:51:06+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($function) must be a valid callback, function "graphql_activation_callback" not found or invalid function name in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php:292
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#1 C:\xampp\htdocs\project1\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#2 C:\xampp\htdocs\project1\wp-admin\plugins.php(193): do_action('activate_wp-gra...')
+#3 {main}
+  thrown in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php on line 292
+
+2021-05-01T06:51:24+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($function) must be a valid callback, function "graphql_activation_callback" not found or invalid function name in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php:292
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#1 C:\xampp\htdocs\project1\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#2 C:\xampp\htdocs\project1\wp-admin\includes\plugin.php(701): do_action('activate_wp-gra...', false)
+#3 C:\xampp\htdocs\project1\wp-admin\plugins.php(58): activate_plugin('wp-graphql-rele...', 'http://localhos...', false)
+#4 {main}
+  thrown in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php on line 292
+
+2021-05-01T06:51:26+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($function) must be a valid callback, function "graphql_activation_callback" not found or invalid function name in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php:292
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#1 C:\xampp\htdocs\project1\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#2 C:\xampp\htdocs\project1\wp-admin\plugins.php(193): do_action('activate_wp-gra...')
+#3 {main}
+  thrown in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php on line 292
+
+2021-05-01T06:51:26+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($function) must be a valid callback, function "graphql_activation_callback" not found or invalid function name in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php:292
+Stack trace:
+#0 C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#1 C:\xampp\htdocs\project1\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#2 C:\xampp\htdocs\project1\wp-admin\plugins.php(193): do_action('activate_wp-gra...')
+#3 {main}
+  thrown in C:\xampp\htdocs\project1\wp-includes\class-wp-hook.php on line 292
+

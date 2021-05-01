@@ -7,7 +7,7 @@
   } */
   .yaymail-customizer-page-builder #wpbody-content .error,
   .yaymail-customizer-page-builder .updated {
-    display: none ;
+    display: none;
   }
   .yaymail-customizer-page-builder #adminmenumain {
     display: none ;
@@ -58,4 +58,10 @@
   }
   .yaymail-customizer-page-builder .notice-success {
     display: none !important;
+  }
+  .yaymail-customizer-page-builder .anticon {
+    vertical-align: -.125em;
+  }
+  .yaymail-customizer-page-builder .anticon::before {
+    content: unset !important;
   }

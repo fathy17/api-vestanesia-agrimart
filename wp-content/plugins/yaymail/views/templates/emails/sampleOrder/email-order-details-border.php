@@ -1,16 +1,18 @@
 <?php
 
 defined( 'ABSPATH' ) || exit;
+
 use YayMail\Page\Source\CustomPostType;
 $postID          = CustomPostType::postIDByTemplate( $this->template );
-$text_link_color = get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) ? get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) : '#96588A';
-$sent_to_admin   = ( isset( $sent_to_admin ) ? true : false );
-$text_align      = is_rtl() ? 'right' : 'left';
+$text_link_color = get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) ? get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) : '#96588a';
+
+$sent_to_admin = ( isset( $sent_to_admin ) ? true : false );
+$text_align    = is_rtl() ? 'right' : 'left';
+
 ?>
 
 <h2 class="yaymail_builder_order" style="color: #96588a;">
 	<?php
-
 	$before = '<a style="color: ' . $text_link_color . '" class="yaymail_builder_link" href="">';
 	$after  = '</a>';
 	/* translators: %s: Order ID. */
@@ -43,7 +45,7 @@ $text_align      = is_rtl() ? 'right' : 'left';
 				<?php esc_html_e( '£18.00', 'yaymail' ); ?>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td class="td" scope="row" colspan="2" style="text-align:left;font-weight:700;border-top-width: 4px;">
 				<?php esc_html_e( 'Subtotal:', 'yaymail' ); ?>

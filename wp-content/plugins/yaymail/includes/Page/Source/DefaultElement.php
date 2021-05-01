@@ -8,6 +8,7 @@ class DefaultElement {
 	public $defaultDataElement = null;
 
 	public function __construct() {
+		$ImgUrl              = YAYMAIL_PLUGIN_URL . 'assets/dist/images';
 		$textShippingAddress = __( 'Shipping Address', 'woocommerce' );
 		$textBillingAddress  = __( 'Billing Address', 'woocommerce' );
 
@@ -17,6 +18,23 @@ class DefaultElement {
 				'type'        => 'Logo',
 				'nameIcon'    => 'picture',
 				'nameElement' => 'Logo',
+				'settingRow'  => array(
+					'backgroundColor' => '#fff',
+					'align'           => 'center',
+					'pathImg'         => '',
+					'paddingTop'      => 15,
+					'paddingRight'    => 50,
+					'paddingBottom'   => 15,
+					'paddingLeft'     => 50,
+					'width'           => 202,
+					'url'             => '#',
+				),
+			),
+			array(
+				'id'          => 41,
+				'type'        => 'YaymailLogo',
+				'nameIcon'    => 'picture',
+				'nameElement' => 'YaymailLogo',
 				'settingRow'  => array(
 					'backgroundColor' => '#fff',
 					'align'           => 'center',
@@ -136,7 +154,7 @@ class DefaultElement {
 					'paddingRight'    => 50,
 					'paddingBottom'   => 15,
 					'paddingLeft'     => 50,
-					'styleTheme'      => 'soildDark',
+					'styleTheme'      => 'SolidDark',
 					'iconSocialsArr'  => array(),
 				),
 			),
@@ -635,87 +653,8 @@ class DefaultElement {
 					'paddingLeft'     => 50,
 				),
 			),
-
-		// array(
-		// 'id' => 17,
-		// 'type' => "OrderItemTitle",
-		// 'nameIcon' => "table",
-		// 'nameElement' => "Order Item Title",
-		// 'settingRow' => array(
-		// 'content' => '<p style="line-height: 22px;">[yaymail_items_border_title]</p>',
-		// 'backgroundColor' => "#fff",
-		// "textColor" => "#965f8e",
-		// 'family' => "Verdana, Geneva, sans-serif",
-		// 'paddingTop' => 15,
-		// 'paddingRight' => 50,
-		// 'paddingBottom' => 15,
-		// 'paddingLeft' => 50,
-		// ),
-		// ),
-		// array(
-		// 'id' => 18,
-		// 'type' => "OrderItemContent",
-		// 'nameIcon' => "table",
-		// 'nameElement' => "Order Item Content",
-		// 'settingRow' => array(
-		// 'content' => '<p style="line-height: 22px;">[yaymail_items_border_content]</p>',
-		// 'backgroundColor' => "#fff",
-		// "textColor" => "#636363",
-		// 'family' => "Verdana, Geneva, sans-serif",
-		// 'paddingTop' => 15,
-		// 'paddingRight' => 50,
-		// 'paddingBottom' => 15,
-		// 'paddingLeft' => 50,
-		// ),
-		// ),
 		);
-		if ( class_exists( 'WC_Subscription' ) ) {
-			array_push(
-				$this->defaultDataElement,
-				array(
-					'id'          => 24,
-					'type'        => 'OrderSubscription',
-					'nameIcon'    => 'wallet',
-					'nameElement' => 'Order Subscription',
-					'settingRow'  => array(
-						'content'         => '[yaymail_items_subscription_information]',
-						'backgroundColor' => '#fff',
-						'titleColor'      => '#96588a',
-						'textColor'       => '#636363',
-						'borderColor'     => '#e5e5e5',
-						'family'          => '"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif',
-						'paddingTop'      => 15,
-						'paddingRight'    => 50,
-						'paddingBottom'   => 15,
-						'paddingLeft'     => 50,
-					),
-				)
-			);
-		}
-		if ( class_exists( 'YWSBS_Subscription' ) ) {
-			array_push(
-				$this->defaultDataElement,
-				array(
-					'id'          => 28,
-					'type'        => 'YITHOrderSubscription',
-					'nameIcon'    => 'wallet',
-					'nameElement' => 'Order Subscription',
-					'settingRow'  => array(
-						'content'         => '[yaymail_subscription_table]',
-						'contentTitle'    => '[yaymail_subscription_table_title]',
-						'backgroundColor' => '#fff',
-						'titleColor'      => '#96588a',
-						'textColor'       => '#636363',
-						'borderColor'     => '#e5e5e5',
-						'family'          => '"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif',
-						'paddingTop'      => 15,
-						'paddingRight'    => 50,
-						'paddingBottom'   => 15,
-						'paddingLeft'     => 50,
-					),
-				)
-			);
-		}
+
 		if ( class_exists( 'WC_Shipment_Tracking_Actions' ) || class_exists( 'WC_Advanced_Shipment_Tracking_Actions' ) ) {
 			array_push(
 				$this->defaultDataElement,
@@ -726,6 +665,30 @@ class DefaultElement {
 					'nameElement' => 'Tracking Item',
 					'settingRow'  => array(
 						'content'         => '[yaymail_order_meta:_wc_shipment_tracking_items]',
+						'backgroundColor' => '#fff',
+						'titleColor'      => '#96588a',
+						'textColor'       => '#636363',
+						'borderColor'     => '#e5e5e5',
+						'family'          => '"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif',
+						'paddingTop'      => 15,
+						'paddingRight'    => 50,
+						'paddingBottom'   => 15,
+						'paddingLeft'     => 50,
+					),
+				)
+			);
+		}
+
+		if ( class_exists( 'WC_Admin_Custom_Order_Fields' ) ) {
+			array_push(
+				$this->defaultDataElement,
+				array(
+					'id'          => 110,
+					'type'        => 'AdditionalOrderDetails',
+					'nameIcon'    => 'table',
+					'nameElement' => 'Additional Order Details',
+					'settingRow'  => array(
+						'content'         => '[yaymail_order_meta:_wc_additional_order_details]',
 						'backgroundColor' => '#fff',
 						'titleColor'      => '#96588a',
 						'textColor'       => '#636363',

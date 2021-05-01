@@ -2,14 +2,12 @@
 
 defined( 'ABSPATH' ) || exit;
 use YayMail\Page\Source\CustomPostType;
-
 $sent_to_admin   = ( isset( $sent_to_admin ) ? true : false );
 $email           = ( isset( $email ) ? $email : '' );
 $plain_text      = ( isset( $plain_text ) ? $plain_text : '' );
 $text_align      = is_rtl() ? 'right' : 'left';
 $postID          = CustomPostType::postIDByTemplate( $this->template );
 $text_link_color = get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) ? get_post_meta( $postID, '_yaymail_email_textLinkColor_settings', true ) : '#96588a';
-
 // instructions payment
 $paymentGateways  = wc_get_payment_gateway_by_order( $order );
 $yaymail_settings = get_option( 'yaymail_settings' );
@@ -171,7 +169,7 @@ if ( false != $paymentGateways && isset( $paymentGateways->account_details ) ) {
 			?>
 
 			<tr>
-			<td class="td" scope="row" colspan="3" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border: 1px solid;border-color: inherit;">
+				<td class="td" scope="row" colspan="3" style="text-align:left;vertical-align: middle;padding: 12px;font-size: 14px;border: 1px solid;border-color: inherit;">
 					<?php esc_html_e( $purchase_note, 'woocommerce' ); ?>
 				</td>
 			</tr>

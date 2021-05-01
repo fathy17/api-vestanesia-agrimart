@@ -28,64 +28,6 @@ class CustomerResetPassword {
 		$textUserName      = __( 'Username', 'woocommerce' );
 		$additionalContent = __( 'Thanks for reading.', 'woocommerce' );
 
-		// Html
-		$html = '
-      <html>
-        <head>
-          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        </head>
-        <body style="background: rgb(236, 236, 236); padding: 0;">
-          <table   width="605px" cellspacing="0" cellpadding="0" border="0" align="center" id="web8ffa62b5-7258-42cc-ba53-7ae69638c1fe" class="web-main-row" style="display: table; background-color: rgb(236, 236, 236); width: 605px;">
-              <tbody >
-                <tr >
-                    <td  id="web8ffa62b5-7258-42cc-ba53-7ae69638c1fe-img" align="center" class="web-img-wrap" style="word-break: break-word; padding: 15px 50px;"><a  href="#" target="_blank" style="border: none; text-decoration: none;"><img  border="0" tabindex="0" src="' . YAYMAIL_PLUGIN_URL . 'assets/dist/images/woocommerce-logo.png" class="web-img" width="172" height="auto"></a></td>
-                </tr>
-              </tbody>
-          </table>
-          <table   width="605px" cellspacing="0" cellpadding="0" border="0" align="center" id="web802bfe24-7af8-48af-ac5e-6560a81345b3" class="web-main-row" style="display: table; background-color: #96588a; width: 605px;">
-              <tbody >
-                <tr >
-                    <td  id="web802bfe24-7af8-48af-ac5e-6560a81345b3-shipping-address" align="left" class="web-shipping-address" style="font-size: 13px;  line-height: 22px; word-break: break-word; font-family:  Helvetica, Roboto, Arial, sans-serif; padding: 36px 48px;">
-                      <div >
-                          <h1 style="font-size: 30px; font-weight: 300; line-height: normal; margin: 0; color: #fff;">' . $emailTitle . '</h1>
-                      </div>
-                    </td>
-                </tr>
-              </tbody>
-          </table>
-          <table   width="605px" cellspacing="0" cellpadding="0" border="0" align="center" id="webb035d1f1-0cfe-41c5-b79c-0478f144ef5f" class="web-main-row" style="display: table; background-color: rgb(255, 255, 255); width: 605px;">
-              <tbody >
-                <tr >
-                    <td  id="webb035d1f1-0cfe-41c5-b79c-0478f144ef5f-shipping-address" align="left" class="web-shipping-address" style="font-size: 13px;  line-height: 22px; word-break: break-word; font-family:  Helvetica, Roboto, Arial, sans-serif; padding: 32px 48px;">
-                      <div >
-                          <p style="margin: 0 0 16px;"><span style="color: #636363; font-size: 14px;">' . $emailHi . '</span></p>
-                          <p style="margin: 0 0 16px;"><span style="color: #636363; font-size: 14px;">' . $emailtext . '</span></p>
-                          <p style="margin: 0 0 16px;"><span style="color: #636363; font-size: 14px;">' . $textUserName . ': [yaymail_customer_username]</span></p>
-                          <p style="margin: 0 0 16px;"><span style="color: #636363; font-size: 14px;">' . $emailtext_1 . '</span></p>
-                          <p style="margin: 0 0 16px;">
-                          [yaymail_password_reset_url]
-                          </p>
-                          <p style="margin: 0 0 16px;"><span style="color: #636363; font-size: 14px;">' . $additionalContent . '</span></p>
-                      </div>
-                    </td>
-                </tr>
-              </tbody>
-          </table>
-          <table   width="605px" cellspacing="0" cellpadding="0" border="0" align="center" id="web964bb3b1-2e11-4eb1-a2b0-440c8da21257" class="web-main-row" style="display: table; background-color: rgb(236, 236, 236); width: 605px;">
-              <tbody >
-                <tr >
-                    <td  id="web964bb3b1-2e11-4eb1-a2b0-440c8da21257-shipping-address" align="left" class="web-shipping-address" style="font-size: 13px;  line-height: 22px; word-break: break-word; font-family: Verdana, Geneva, sans-serif; padding: 15px 50px;">
-                      <div >
-                          <p style="font-size: 14px; color: #8a8a8a; margin: 0px 0px 16px; text-align: center;">[yaymail_site_name] - Built with <a style="color: #96588a; font-weight: normal; text-decoration: underline;" href="https://woocommerce.com" target="_blank" rel="noopener">WooCommerce</a></p>
-                      </div>
-                    </td>
-                </tr>
-              </tbody>
-          </table>
-        </body>
-      </html>
-    ';
-
 		/*
 		@@@ Elements default when reset template.
 		@@@ Note 1: Add characters '\' before special characters in a string.
@@ -162,7 +104,6 @@ class CustomerResetPassword {
 			'customer_reset_password' => array(),
 		);
 
-		$templates['customer_reset_password']['html']     = $html;
 		$templates['customer_reset_password']['elements'] = $elements;
 		return $templates;
 	}

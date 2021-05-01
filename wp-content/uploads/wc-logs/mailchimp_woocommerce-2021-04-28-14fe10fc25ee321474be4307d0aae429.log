@@ -1,0 +1,4 @@
+2021-04-28T01:08:11+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 1
+2021-04-28T01:08:22+00:00 ERROR api.list :: Error retrieving list for double_optin check
+2021-04-28T01:08:22+00:00 ERROR member.sync :: fathyfahrezy17@gmail.com :: Error Code 401 :: API Key Invalid :: API key has been disabled on 1858 in C:\xampp\htdocs\project1\wp-content\plugins\mailchimp-for-woocommerce\includes\api\class-mailchimp-api.php
+2021-04-28T01:12:35+00:00 ERROR delete_store 607b67f206027 :: API Key Invalid :: API key has been disabled

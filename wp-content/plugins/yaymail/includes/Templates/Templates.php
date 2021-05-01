@@ -16,8 +16,15 @@ use YayMail\Templates\DefaultTemplate\CustomerResetPassword;
 use YayMail\Templates\DefaultTemplate\FailedOrder;
 use YayMail\Templates\DefaultTemplate\NewOrder;
 use YayMail\Templates\DefaultTemplate\CustomOrderStastus;
-use YayMail\Templates\DefaultTemplate\DefaultSubscription;
 use YayMail\Templates\DefaultTemplate\YITHSubscription;
+use YayMail\Templates\DefaultTemplate\YITHMultiVendor\YITHMultiVendorDefault;
+use YayMail\Templates\DefaultTemplate\YITHMultiVendor\YITHMultiVendorNewOrder;
+use YayMail\Templates\DefaultTemplate\YITHMultiVendor\YITHMultiVendorCommissionsBulk;
+use YayMail\Templates\DefaultTemplate\YITHMultiVendor\YITHMultiVendorRegistration;
+use YayMail\Templates\DefaultTemplate\YITHMultiVendor\YITHMultiCommissions;
+use YayMail\Templates\DefaultTemplate\GermanizedForWoo\SimpleInvoice;
+use YayMail\Templates\DefaultTemplate\YITHWishlist\EstimateMail;
+use YayMail\Templates\DefaultTemplate\WooBookings\BookingsDefault;
 
 defined( 'ABSPATH' ) || exit;
 /**
@@ -79,31 +86,9 @@ class Templates {
 
 		foreach ( $listEmails as $key => $value ) {
 			if ( ! in_array( $value->id, $listEmailDefaultOfWoo ) ) {
-				$getHeading = $value->heading;
-				if ( 'WCS_Email_New_Switch_Order' == $key
-					|| 'WCS_Email_Completed_Switch_Order' == $key
-					|| 'WCS_Email_Cancelled_Subscription' == $key
-					|| 'WCS_Email_Expired_Subscription' == $key
-					|| 'WCS_Email_On_Hold_Subscription' == $key
-				) {
-					$defaultSubscription = DefaultSubscription::getTemplates( $value->id, $getHeading );
-					$listTemplates       = array_merge( $listTemplates, $defaultSubscription );
-				} elseif ( 'YITH_WC_Subscription_Status' == $key
-				|| 'YITH_WC_Customer_Subscription_Cancelled' == $key
-				|| 'YITH_WC_Customer_Subscription_Suspended' == $key
-				|| 'YITH_WC_Customer_Subscription_Expired' == $key
-				|| 'YITH_WC_Customer_Subscription_Before_Expired' == $key
-				|| 'YITH_WC_Customer_Subscription_Paused' == $key
-				|| 'YITH_WC_Customer_Subscription_Resumed' == $key
-				|| 'YITH_WC_Customer_Subscription_Request_Payment' == $key
-				|| 'YITH_WC_Customer_Subscription_Renew_Reminder' == $key
-				|| 'YITH_WC_Customer_Subscription_Payment_Done' == $key
-				|| 'YITH_WC_Customer_Subscription_Payment_Failed' == $key ) {
-					$yithSubscription = YITHSubscription::getTemplates( $value->id, $getHeading );
-					$listTemplates    = array_merge( $listTemplates, $yithSubscription );
-				} else {
-					$customOrderStastus = CustomOrderStastus::getTemplates( $value->id, $getHeading );
-					$listTemplates      = array_merge( $listTemplates, $customOrderStastus );
+				$newTempalte = apply_filters( 'YaymailNewTempalteDefault', $key, $value );
+				if ( isset( $newTempalte ) && null != $newTempalte && is_array( $newTempalte ) ) {
+					$listTemplates = array_merge( $listTemplates, $newTempalte );
 				}
 			}
 		}
@@ -153,11 +138,13 @@ class Templates {
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border thead tr {
       border-width: 1px;
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border thead tr th {
       vertical-align:middle;
       padding:12px;
@@ -168,16 +155,19 @@ class Templates {
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border tbody {
       border-width: 1px;
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border tbody tr {
       border-width: 1px;
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border tbody tr td {
       padding:12px;
       text-align:left;
@@ -189,16 +179,19 @@ class Templates {
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border tfoot {
       border-width: 1px;
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border tfoot tr {
       border-width: 1px;
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= 'table.yaymail_builder_table_items_border tfoot tr td {
       vertical-align:middle;
       padding:12px;
@@ -209,6 +202,7 @@ class Templates {
       border-style: solid;
       border-color: inherit
     }';
+
 		$css .= ' table.yaymail_builder_table_items_border tfoot tr th {
       vertical-align:middle;
       padding:12px;
@@ -371,14 +365,12 @@ class Templates {
     }';
 
 		$css .= '.yaymail-items-order-border tbody[data-shordcode="yaymail_items_border_content"],
-              .yaymail-items-order-border
-              tbody[data-shordcode="yaymail_items_border_content"]
+              .yaymail-items-order-border tbody[data-shordcode="yaymail_items_border_content"]
               .yaymail_builder_table_items_border {
               border-color: inherit;
               flex-direction: inherit;
             }
-            .yaymail-items-order-border
-            tbody[data-shordcode="yaymail_items_border_content"]
+            .yaymail-items-order-border tbody[data-shordcode="yaymail_items_border_content"]
               .yaymail_builder_table_items_border tbody {
                 flex-direction: inherit;
             }';
@@ -386,7 +378,8 @@ class Templates {
 		$css .= 'table.yaymail_builder_table_subcription,
             table.yaymail_builder_table_tracking_item,
             table.yaymail_builder_table_item_download,
-            table.yaymail_builder_table_item_subscription {
+            table.yaymail_builder_table_item_subscription,
+            table.yaymail_builder_table_item_multi_vendor {
             color: inherit;
             border-width: 1px;
             border-style: solid;
@@ -396,7 +389,7 @@ class Templates {
             .yaymail-items-order-border span[data-shordcode="yaymail_items_subscription_suspended"],
             .yaymail-items-order-border span[data-shordcode="yaymail_items_subscription_cancelled"],
             .yaymail-items-order-border span[data-shordcode="yaymail_items_subscription_information"],
-            .yaymail-items-tracking-item div[data-shordcode="yaymail_order_meta:_wc_shipment_tracking_items"],
+            .yaymail-items-tracking-item span[data-shordcode="yaymail_order_meta:_wc_shipment_tracking_items"],
             .yaymail-items-item-download span[data-shordcode="yaymail_items_downloadable_product"],
             .yaymail-items-subscript-border span[data-shordcode="yaymail_subscription_table"]
               {
